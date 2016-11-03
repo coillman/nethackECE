@@ -3,6 +3,7 @@ import commonPackage.Bac;
 
 
 import java.io.*;
+import java.util.ArrayList;
 
 public class Platform {
 
@@ -11,6 +12,7 @@ public class Platform {
 	private int lig = 24;
 	private Case[][] tab = new Case[lig][col];
 	private Bac monBac;
+	private ArrayList<Personnage> persosOnPlat;
 
 	// CONSTRUCTEURS---------------------------------------------------------------
 	public Platform() {
@@ -60,6 +62,15 @@ public class Platform {
 				tab[i][j].setPriority();
 				this.getBac().affichetab[i][j] = tab[i][j].affichage;
 			}
+		}
+	}
+	
+	public void placePersos(){
+		/*
+		 * parcours la liste de personnages et les places dans les cases de la map
+		 */
+		for(Personnage perso : this.persosOnPlat){
+			this.tab[perso]
 		}
 	}
 
