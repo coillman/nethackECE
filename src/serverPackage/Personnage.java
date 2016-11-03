@@ -2,7 +2,6 @@
 package serverPackage;
 
 import java.util.ArrayList;
-import java.awt.event.KeyEvent;
 import java.lang.Math;
 
 public abstract class Personnage {
@@ -11,8 +10,14 @@ public abstract class Personnage {
 	private int strength;
 	private int luck;
 	private int resistance;
+	
+	private int posX;
+	private int posY;
+	
 	private ArrayList<String> listItem;
 	protected char affichage;
+
+	
 
 	public Personnage() {
 		// default value
@@ -32,7 +37,22 @@ public abstract class Personnage {
 	public void setLife(int newLife) {
 		this.life = newLife;
 	}
-
+	
+	/* getter and setter position */
+	public int getPersoPosX() {
+		return this.posX;
+	}
+	public void setPersoPosX(int newPosX) {
+		this.posX= newPosX;
+	}
+	public int getPersoPosY() {
+		return this.posY;
+	}
+	public void setPersoPosY(int newPosY) {
+		this.posY= newPosY;
+	}
+	
+	/* getter and setter Luck */
 	public int getLuck() {
 		return this.luck;
 	}
@@ -116,7 +136,7 @@ public abstract class Personnage {
 		this.setStrength(this.getStrength() + attack);
 	}
 
-	public void move(KeyEvent key) {
+	public void move(String key) {
 	}
 
 }
