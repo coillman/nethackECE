@@ -12,19 +12,8 @@ public class Orc extends Personnage{
 	}
 
 
-	public void move(KeyEvent key){
+	public void move(String key){
 		
-		int touche = key.getKeyCode();
-		switch (touche){
-			case KeyEvent.VK_UP : 
-			break;
-			case KeyEvent.VK_DOWN : 
-			break;
-			case KeyEvent.VK_LEFT :
-			break;
-			case KeyEvent.VK_RIGHT : 
-			break;
-		}
 		
 	}
 }

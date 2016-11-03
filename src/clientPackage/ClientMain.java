@@ -12,7 +12,7 @@ public class ClientMain {
 		System.out.println("numero de port :");
 		Scanner sc1 = new Scanner(System.in);
 		int port = sc1.nextInt();
-		sc1.close();
+		//sc1.close();
 		
 		ClientView monclient = new ClientView(port);
 		monclient.getClientInput();
