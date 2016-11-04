@@ -73,5 +73,10 @@ public class Platform {
 			this.tab[perso]
 		}
 	}
+	
+	public boolean isMovePossible(int cooX,int cooY){
+		
+		return false;
+	}
 
 }

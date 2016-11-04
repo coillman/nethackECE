@@ -27,6 +27,11 @@ public abstract class Personnage {
 		 * 
 		 * this.listItem.add("");
 		 */
+		
+		/**Set random position  **/
+		//this.posX = (int)(Math.random()*10+1);
+		//this.posY = (int)(Math.random()*10+1);
+		
 	}
 
 	// getter and setters
@@ -137,6 +142,15 @@ public abstract class Personnage {
 	}
 
 	public void move(String key) {
+		String touche;
+		switch (key){
+		case "up" :touche="up";		break;
+		case "left" :touche="left";	break;
+		case "down" :touche="down";	break;
+		case "right" :touche="right";	break;
+		default: touche=""; break;
+	}
+		
 	}
 
 }
