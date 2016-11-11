@@ -70,7 +70,7 @@ public class Platform {
 		 * parcours la liste de personnages et les places dans les cases de la map
 		 */
 		for(Personnage perso : this.persosOnPlat){
-			this.tab[perso]
+			//this.tab[perso]
 		}
 	}
 	

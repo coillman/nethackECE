@@ -1,6 +1,5 @@
 package serverPackage;
 
-import java.awt.event.KeyEvent;
 
 public class Gobelin extends Personnage{
 

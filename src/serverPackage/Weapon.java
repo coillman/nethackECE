@@ -5,6 +5,7 @@ public class Weapon extends Item{
 	
 	public Weapon(){
 		this.attackIncrease = 18;
+		super.setItemType("arme");
 	}
 	
 	public int getAttackIncrease(){

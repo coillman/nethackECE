@@ -1,6 +1,5 @@
 package serverPackage;
 
-import java.awt.event.KeyEvent;
 
 public class Orc extends Personnage{
 
@@ -12,8 +11,4 @@ public class Orc extends Personnage{
 	}
 
 
-	public void move(String key){
-		
-		
-	}
 }

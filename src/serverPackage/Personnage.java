@@ -2,6 +2,7 @@
 package serverPackage;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.lang.Math;
 
 public abstract class Personnage {
@@ -14,7 +15,7 @@ public abstract class Personnage {
 	private int posX;
 	private int posY;
 	
-	private ArrayList<String> listItem;
+	
 	protected char affichage;
 
 	
@@ -31,6 +32,7 @@ public abstract class Personnage {
 		/**Set random position  **/
 		//this.posX = (int)(Math.random()*10+1);
 		//this.posY = (int)(Math.random()*10+1);
+		
 		
 	}
 
@@ -82,19 +84,6 @@ public abstract class Personnage {
 		this.strength = newStrength;
 	}
 
-	public ArrayList<String> getAllItem() {
-		return this.listItem;
-	}
-
-	public void addNewItem(String newItem) {
-		listItem.add(newItem);
-	}
-
-	public void deleteItem(String itemtoDel) {
-		// ???
-	}
-
-	// methods to implement
 
 	public void attack(Personnage target) {
 		int damage = 0;
@@ -123,24 +112,9 @@ public abstract class Personnage {
 	public void dropItem() {
 
 	}
-
-	public void pickItem() {
-
-	}
-
-	public void use(Potion potion) {
-		this.setLife(this.getLife() + potion.getPotionValue());
-	}
-
-	public void use(Food food) {
-		int life, attack;
-		int[] attr = food.getFoodAttribute();
-		life = attr[0];
-		attack = attr[1];
-		this.setLife(this.getLife() + life);
-		this.setStrength(this.getStrength() + attack);
-	}
-
+	
+	// Moving management
+	
 	public void move(String key) {
 		String touche;
 		switch (key){

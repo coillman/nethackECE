@@ -5,9 +5,10 @@ public class Armure extends Item{
 	
 	public Armure(){
 		this.armureResistance = 15;
+		super.setItemType("armure");
 	}
 	
-	public int getArmureRes(){
+	public int getArmureResistance(){
 		return this.armureResistance;
 	}
 }

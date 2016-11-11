@@ -6,7 +6,8 @@ public class Food extends Item{
 	
 	public Food(){
 		this.lifeValue = 8;
-		this.attackValue = 9;
+		this.attackValue = 5;
+		super.setItemType("food");
 	}
 	
 	public int[] getFoodAttribute(){
