@@ -58,8 +58,9 @@ public class Main {
 		  gandalf.showItemList();
 		  
 		  gandalf.use(theFood);
+		  gandalf.pickItem(hache);
 		  
-		  
+		  gandalf.showItemList();
 		  
 		  System.out.println(gandalf.getLife());
 		  System.out.println(gob.getLife());
