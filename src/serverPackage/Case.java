@@ -35,5 +35,9 @@ public class Case {
 	public void addPerso(Personnage perso){
 		listePerso.add(perso);
 	}
+	
+	public void removePerso(Personnage perso){
+		listePerso.remove(perso);
+	}
 
 }
