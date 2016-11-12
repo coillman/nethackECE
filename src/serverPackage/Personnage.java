@@ -14,6 +14,8 @@ public abstract class Personnage {
 	private int posX;
 	private int posY;
 	
+	private int id;
+	
 	private ArrayList<String> listItem;
 	protected char affichage;
 

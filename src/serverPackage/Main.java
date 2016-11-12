@@ -101,7 +101,7 @@ public class Main {
 				mamap.createView();
 				monserv.spread(mamap, whoseTurn);
 				action = monserv.listen(whoseTurn);
-				
+				mamap.apply(action, whoseTurn;)
 				
 			}
 		}

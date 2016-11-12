@@ -31,5 +31,9 @@ public class Case {
 			affichage = initial;
 		}
 	}
+	
+	public void addPerso(Personnage perso){
+		listePerso.add(perso);
+	}
 
 }

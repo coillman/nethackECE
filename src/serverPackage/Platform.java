@@ -70,8 +70,21 @@ public class Platform {
 		 * parcours la liste de personnages et les places dans les cases de la map
 		 */
 		for(Personnage perso : this.persosOnPlat){
-			this.tab[perso]
+			this.tab[perso.getPersoPosX()][perso.getPersoPosY()].addPerso(perso);
 		}
+	}
+	
+	public void addPerso(Personnage perso){
+		/*
+		 * ajoute le perso à la liste persosOnPlat
+		 */
+	}
+	
+	public void apply(String action, int idperso){
+		/*
+		 * en fonction de action, appel la bonne méthode
+		 */
+		
 	}
 
 }
