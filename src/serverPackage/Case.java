@@ -47,5 +47,13 @@ public class Case {
 		}
 		
 	}
+	
+	public void addItem(Item item){
+		this.item = item;
+	}
+	public void removeItem(){
+		//remove item on the case
+		this.item = null;
+	}
 
 }

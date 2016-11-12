@@ -80,11 +80,12 @@ public class Platform {
 		Food apple = new Food();
 		Weapon wand = new Weapon();
 		Weapon sword = new Weapon();
+		this.tab[2][5].addItem(elixir);
 	}
 	
 	public void placeMonsters(){
 		Orc bossMonster=new Orc(7,9);
-		Gobelin smallFry = new Gobelin(3,5);
+		Gobelin smallFry = new Gobelin(5,3);
 		this.tab[bossMonster.getPersoPosY()][bossMonster.getPersoPosX()].addPerso(bossMonster);
 		this.tab[smallFry.getPersoPosY()][smallFry.getPersoPosX()].addPerso(smallFry);
 	}

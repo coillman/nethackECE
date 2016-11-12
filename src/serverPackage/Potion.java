@@ -9,6 +9,7 @@ public class Potion extends Item {
 		this.lifeBonus=10;
 		this.attackBonus=7;
 		super.setItemType("potion");
+		affichage ='p';
 	}
 	
 	public int getPotionLife(){

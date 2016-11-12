@@ -169,6 +169,7 @@ public class Main {
 			
 			while(!levelup){
 				
+				mamap.placeItems();
 				mamap.placeMonsters();
 				
 				mamap.placePersos();
