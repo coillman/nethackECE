@@ -38,16 +38,19 @@ public class ClientView  {
 			}else if(clientIpnut.contains("use")){
 				// use item event
 				String itemName = this.getItemToUse(clientIpnut);
-				if(this.checkInInventory(itemName)){
+				System.out.println(itemName);
+				if(itemName.isEmpty()){
+					runningState =false;
+					System.out.println("What item do you want to use?");
+				}else if(this.checkInInventory(itemName)){
 					// check if item is in inventory
 					clientIpnut ="use:"+itemName;
+					runningState =true;
 				}
-				runningState =true;
-			
+					
 			}else if(clientIpnut.contains("pick")){
 				// pick item event
-				String itemtoAdd = getItemtoPick(clientIpnut);
-				clientIpnut ="pick:"+itemtoAdd;
+				clientIpnut ="pick:";
 				// pass to itemtoAdd to an Inventory
 				runningState =true;
 				
@@ -93,13 +96,13 @@ public class ClientView  {
 	}
 	
 	public String getOpponentToAttack(String command){
-		String perso = command.substring(command.lastIndexOf("attack")+7);
+		String perso = command.substring(command.lastIndexOf("attack")+6);
 		perso = perso.trim();
 		return perso;
 	}
 	
 	public String getItemToUse(String command){
-		String item = command.substring(command.lastIndexOf("use")+4).trim();
+		String item = command.substring(command.lastIndexOf("use")+3).trim();
 		return item;
 	}
 	
