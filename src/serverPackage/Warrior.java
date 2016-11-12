@@ -18,8 +18,14 @@ public class Warrior extends Personnage{
 	
 	// Item management
 	
-	public ArrayList<Item> getAllItem() {
-		return this.inventory;
+	public ArrayList<String> getAllItem() {
+		//create an ArrayList of String to pass to the BAC	
+		ArrayList<String>inventoryString = new ArrayList<String>();
+		for (Iterator<Item> it = inventory.iterator(); it.hasNext(); ) {
+		    Item item = it.next();
+		    inventoryString.add(item.getItemType());
+		}
+		return inventoryString;
 	}
 
 	public void deleteItem(String itemtoDel) {
