@@ -10,6 +10,8 @@ public class ClientMain {
 	public static void main(String[] args) throws IOException {
 		
 		Bac bacOut = new Bac();
+		Bac bacIn = new Bac();
+		boolean quit = false;
 
 /*		
   		// demande de l'adresse du host à l'utilisateur
@@ -27,11 +29,13 @@ public class ClientMain {
 		
 		ClientView monclient = new ClientView(port);
 		
-		int i = 0;
-		while(i<6){
-			bacOut.action = monclient.getClientInput();
-			monclient.instanceClient.sendRequest(bacOut);
-			i++;
+		while(!quit){
+			bacIn = monclient.instanceClient.listen();
+			monclient.affiche(bacIn);
+			if(bacIn.monTour){
+				bacOut.action = monclient.getClientInput();
+				monclient.instanceClient.sendRequest(bacOut);
+			}
 		}
 		
 	}

@@ -1,5 +1,5 @@
 package clientPackage;
-
+import commonPackage.Bac;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -119,4 +119,10 @@ public class ClientView  {
 		return itemState;	
 	}
 	
+	
+	public void affiche(Bac bac){
+		for (int i = 0; i < 24; i++) {
+			System.out.println(bac.affichetab[i]);
+		}
+	}
 }
