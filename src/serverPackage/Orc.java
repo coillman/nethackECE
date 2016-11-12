@@ -1,6 +1,5 @@
 package serverPackage;
 
-import java.awt.event.KeyEvent;
 
 public class Orc extends Personnage{
 
@@ -9,11 +8,8 @@ public class Orc extends Personnage{
 		this.setResistance(90);
 		this.setStrength(40);
 		this.setLuck(3);
+		this.persoType = "monster";
 	}
 
 
-	public void move(String key){
-		
-		
-	}
 }

@@ -1,6 +1,5 @@
 package serverPackage;
 
-import java.awt.event.KeyEvent;
 
 public class Gobelin extends Personnage{
 
@@ -9,6 +8,7 @@ public class Gobelin extends Personnage{
 		this.setResistance(50);
 		this.setStrength(50);
 		this.setLuck(8);
+		this.persoType = "monster";
 	}
 	
 

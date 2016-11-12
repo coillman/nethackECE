@@ -2,13 +2,21 @@ package serverPackage;
 
 public class Potion extends Item {
 	
-	private int lifeValue;
+	private int lifeBonus;
+	private int attackBonus;
 	
 	public Potion(){
-		lifeValue=10;
+		this.lifeBonus=10;
+		this.attackBonus=7;
+		super.setItemType("potion");
 	}
 	
-	public int getPotionValue(){
-		return this.lifeValue;
+	public int getPotionLife(){
+		return this.lifeBonus;
 	}
+	public int getPotionAttack(){
+		return this.attackBonus;
+	}
+	
+	
 }

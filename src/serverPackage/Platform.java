@@ -1,6 +1,6 @@
 package serverPackage;
-import commonPackage.Bac;
 
+import commonPackage.Bac;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -41,21 +41,25 @@ public class Platform {
 			for (int i = 0; i < lig; i++) {
 				dis.readChar();
 				for (int j = 0; j < col; j++) {
-					tab[i][j].initial = dis.readChar(); //initialise l'attribut "initial" de la case avec le contenu du fichier txt
+					tab[i][j].initial = dis.readChar(); // initialise l'attribut
+														// "initial" de la case
+														// avec le contenu du
+														// fichier txt
 				}
 				dis.readChar();
 			}
-			
+
 			dis.close();
 
 		} catch (IOException e) {
 			System.out.println(e);
-		} 
+		}
 	}
 
 	public void createView() {
 		/*
-		 * créé le tableau de char qui sert d'affichage en choisissant le char prioritaire à afficher
+		 * créé le tableau de char qui sert d'affichage en choisissant le char
+		 * prioritaire à afficher
 		 */
 		for (int i = 0; i < lig; i++) {
 			for (int j = 0; j < col; j++) {
@@ -64,27 +68,34 @@ public class Platform {
 			}
 		}
 	}
-	
-	public void placePersos(){
+
+	public void placePersos() {
 		/*
-		 * parcours la liste de personnages et les places dans les cases de la map
+		 * parcours la liste de personnages et les places dans les cases de la
+		 * map
 		 */
-		for(Personnage perso : this.persosOnPlat){
+		for (Personnage perso : this.persosOnPlat) {
 			this.tab[perso.getPersoPosX()][perso.getPersoPosY()].addPerso(perso);
 		}
 	}
-	
-	public void addPerso(Personnage perso){
+
+	public void addPerso(Personnage perso) {
 		/*
 		 * ajoute le perso à la liste persosOnPlat
 		 */
 	}
-	
-	public void apply(String action, int idperso){
+
+	public void apply(String action, int idperso) {
 		/*
 		 * en fonction de action, appel la bonne méthode
 		 */
-		
+
+		// this.tab[perso]
+	}
+
+	public boolean isMovePossible(int cooX, int cooY) {
+
+		return false;
 	}
 
 }

@@ -2,6 +2,7 @@
 package serverPackage;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.lang.Math;
 
 public abstract class Personnage {
@@ -10,16 +11,15 @@ public abstract class Personnage {
 	private int strength;
 	private int luck;
 	private int resistance;
-	
+	protected String persoType;
+
 	private int posX;
 	private int posY;
-	
+
 	private int id;
-	
+
 	private ArrayList<String> listItem;
 	protected char affichage;
-
-	
 
 	public Personnage() {
 		// default value
@@ -29,6 +29,11 @@ public abstract class Personnage {
 		 * 
 		 * this.listItem.add("");
 		 */
+
+		/** Set random position **/
+		// this.posX = (int)(Math.random()*10+1);
+		// this.posY = (int)(Math.random()*10+1);
+
 	}
 
 	// getter and setters
@@ -39,21 +44,24 @@ public abstract class Personnage {
 	public void setLife(int newLife) {
 		this.life = newLife;
 	}
-	
+
 	/* getter and setter position */
 	public int getPersoPosX() {
 		return this.posX;
 	}
+
 	public void setPersoPosX(int newPosX) {
-		this.posX= newPosX;
+		this.posX = newPosX;
 	}
+
 	public int getPersoPosY() {
 		return this.posY;
 	}
+
 	public void setPersoPosY(int newPosY) {
-		this.posY= newPosY;
+		this.posY = newPosY;
 	}
-	
+
 	/* getter and setter Luck */
 	public int getLuck() {
 		return this.luck;
@@ -78,20 +86,6 @@ public abstract class Personnage {
 	public void setStrength(int newStrength) {
 		this.strength = newStrength;
 	}
-
-	public ArrayList<String> getAllItem() {
-		return this.listItem;
-	}
-
-	public void addNewItem(String newItem) {
-		listItem.add(newItem);
-	}
-
-	public void deleteItem(String itemtoDel) {
-		// ???
-	}
-
-	// methods to implement
 
 	public void attack(Personnage target) {
 		int damage = 0;
@@ -121,24 +115,28 @@ public abstract class Personnage {
 
 	}
 
-	public void pickItem() {
-
-	}
-
-	public void use(Potion potion) {
-		this.setLife(this.getLife() + potion.getPotionValue());
-	}
-
-	public void use(Food food) {
-		int life, attack;
-		int[] attr = food.getFoodAttribute();
-		life = attr[0];
-		attack = attr[1];
-		this.setLife(this.getLife() + life);
-		this.setStrength(this.getStrength() + attack);
-	}
+	// Moving management
 
 	public void move(String key) {
+		String touche;
+		switch (key) {
+		case "up":
+			touche = "up";
+			break;
+		case "left":
+			touche = "left";
+			break;
+		case "down":
+			touche = "down";
+			break;
+		case "right":
+			touche = "right";
+			break;
+		default:
+			touche = "";
+			break;
+		}
+
 	}
 
 }

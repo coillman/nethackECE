@@ -1,18 +1,79 @@
 package serverPackage;
 
-import java.awt.event.KeyEvent;
+import java.util.ArrayList;
+import java.util.Iterator;
+
 public class Warrior extends Personnage{
 
+	private ArrayList<Item> inventory;
+	
 	public Warrior() {
 		this.setLife(50);
 		this.setResistance(70);
 		this.setStrength(80);
 		this.setLuck(5);
+		this.persoType = "player";
+		this.inventory = new ArrayList<Item>();
+	}
+	
+	// Item management
+	
+	public ArrayList<Item> getAllItem() {
+		return this.inventory;
 	}
 
-	
-	public void move(String key){
-		
+	public void deleteItem(String itemtoDel) {
+		//remove the item trough iterator
+		for (Iterator<Item> it = inventory.iterator(); it.hasNext(); ) {
+		    Item item = it.next();
+		    if (item.getItemType().equals(itemtoDel)) {
+		       it.remove(); //remove the item
+		    }
+		}
 	}
+
+	public void pickItem(Item item) {
+		System.out.println("You took: " + item.getItemType());
+		inventory.add(item);
+	}
+
+	public void showItemList(){
+		System.out.println("Your Items:");
+		System.out.println("------------");
+		for (Iterator<Item> it = inventory.iterator(); it.hasNext(); ) {
+		    Item item = it.next();
+		    System.out.println(item.getItemType());
+		}
+	}
+	
+	public void use(Potion potion) {
+		this.setLife(this.getLife() + potion.getPotionLife());
+		this.deleteItem("potion");
+	}
+
+	public void use(Food food) {
+		int life, attack;
+		int[] attr = food.getFoodAttribute();
+		life = attr[0];
+		attack = attr[1];
+		this.setLife(this.getLife() + life);
+		this.setStrength(this.getStrength() + attack);
+		this.deleteItem("food");
+	}
+	
+	public void use(Armure armure){
+		int resistance = armure.getArmureResistance();
+		this.setResistance(this.getResistance()+resistance);
+		this.deleteItem("armure");
+	}
+
+	public void use(Weapon arme){
+		int attackInc = arme.getAttackIncrease();
+		this.setStrength(this.getStrength()+attackInc);
+		this.deleteItem("arme");
+	}
+	
+	//moves
+	public void move(String key){}
 	
 }

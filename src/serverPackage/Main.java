@@ -31,33 +31,45 @@ public class Main {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-
-		/*
-		 * //test kevin
-		 * 
-		 * Wizard gandalf = new Wizard(); Gobelin gob = new Gobelin(); Food
-		 * theFood = new Food();
-		 * 
-		 * Potion blue = new Potion();
-		 * 
-		 * 
-		 * System.out.println(gandalf.getLife());
-		 * System.out.println(gob.getLife());
-		 * 
-		 * gandalf.use(blue); gandalf.attack(gob);
-		 * 
-		 * System.out.println(gandalf.getLife());
-		 * System.out.println(gob.getLife());
-		 * 
-		 * gandalf.use(theFood);
-		 * 
-		 * System.out.println(gandalf.getLife());
-		 * System.out.println(gob.getLife());
-		 */
+*/
+		
+		  //test kevin
+		  
+		  Wizard gandalf = new Wizard(); 
+		  Gobelin gob = new Gobelin(); 
+		  
+		  Food theFood = new Food();
+		  Weapon hache = new Weapon();
+		  
+		  Potion blue = new Potion();
+		  
+		  
+		  System.out.println(gandalf.getLife());
+		  System.out.println(gob.getLife());
+		  
+		  gandalf.use(blue); gandalf.attack(gob);
+		  
+		  System.out.println(gandalf.getLife());
+		  System.out.println(gob.getLife());
+		  
+		  gandalf.pickItem(theFood);
+		  gandalf.pickItem(blue);
+		  
+		  gandalf.showItemList();
+		  
+		  gandalf.use(theFood);
+		  gandalf.pickItem(hache);
+		  
+		  gandalf.showItemList();
+		  
+		  System.out.println(gandalf.getLife());
+		  System.out.println(gob.getLife());
+		 
 		
 		
 //-------------------------------------------------------------------------------------------
-		
+	/*	**** 11/11 2016 *********
+	 * 
 		// déclaration des varibales 
 		boolean levelup = false;
 		int level = 0;
@@ -105,6 +117,9 @@ public class Main {
 				
 			}
 		}
+		
+		********** fin 11/11/2016 ****************
+		*/
 	}
 
 }
