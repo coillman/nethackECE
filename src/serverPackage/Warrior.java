@@ -12,7 +12,7 @@ public class Warrior extends Personnage{
 		this.setResistance(70);
 		this.setStrength(80);
 		this.setLuck(5);
-		this.persoType = "player";
+		this.persoType = "warrior";
 		this.inventory = new ArrayList<Item>();
 	}
 	

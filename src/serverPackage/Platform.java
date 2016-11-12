@@ -89,6 +89,57 @@ public class Platform {
 		/*
 		 * en fonction de action, appel la bonne méthode
 		 */
+		String[] parts = action.split(":");
+		String category = parts[0]; //move , use , pick
+		String argument = parts[1]; //up , toto , potion 
+		
+		Personnage perso = persosOnPlat.get(idperso);
+		if (perso.persoType == "wizard"){
+			perso = (Wizard)perso;
+		}
+		else if(perso.persoType =="warrior"){
+			perso = (Warrior)perso;
+		}
+		//for(Personnage perso : persosOnPlat) {} 
+ 		    		
+		
+		switch(category) {
+	        case "move" :
+	        	/** move Perso block **/
+	        	int coordxx, coordyy;
+	        	int coordx = perso.getPersoPosX();
+	        	int coordy = perso.getPersoPosY();
+		        	//convert arg  to position 
+	        		if (argument == "up")		{coordxx=coordx;coordyy=coordy-1;}
+		        	else if (argument == "left"){coordxx=coordx-1;coordyy=coordy;}
+		        	else if (argument == "down"){coordxx=coordx;coordyy=coordy+1;}
+		        	else if (argument == "right"){coordxx=coordx+1;coordyy=coordy;}
+		        	else{coordxx=coordx;coordyy=coordy;}
+	        		//test if the move is possible 
+	        		if (isMovePossible(coordxx, coordyy)){
+	        			//here we can move the perso
+	        		}
+		        break;
+	        	
+	        case "pick" :
+	        	/** pick Item block **/
+
+	        	break;
+	        	
+	        case "use" :
+	        	/** use item block **/
+	        	
+	        	break;
+	        	
+	        case "attack" :
+	        	/** attack opponent block **/
+	        	
+	        	break;
+	        	
+	        case "quit" :    	break;	        
+	        default 	:     	System.out.println("Invalid command");
+		}
+
 		
 
 	}
