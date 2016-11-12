@@ -3,7 +3,8 @@ package serverPackage;
 
 public class Orc extends Personnage{
 
-	public Orc() {
+	public Orc(int x, int y) {
+		super(x,y);
 		this.setLife(90);
 		this.setResistance(90);
 		this.setStrength(40);

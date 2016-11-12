@@ -7,13 +7,15 @@ public class Wizard extends Personnage{
 	
 	private ArrayList<Item> inventory;
 	
-	public Wizard() {
+	public Wizard(int x, int y) {
+		super(x, y);
 		this.setLife(50);
 		this.setResistance(30);
 		this.setStrength(60);
 		this.setLuck(9);
 		this.persoType = "wizard";
 		this.inventory = new ArrayList<Item>();
+		affichage = '@';
 	}
 
 	

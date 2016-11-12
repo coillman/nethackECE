@@ -18,7 +18,7 @@ public abstract class Personnage {
 
 	private int id;
 
-	private ArrayList<String> listItem;
+	//private ArrayList<String> listItem;
 	protected char affichage;
 
 	public Personnage(int x, int y) {
@@ -118,25 +118,7 @@ public abstract class Personnage {
 	// Moving management
 
 	public void move(String key) {
-		String touche;
-		switch (key) {
-		case "up":
-			touche = "up";
-			break;
-		case "left":
-			touche = "left";
-			break;
-		case "down":
-			touche = "down";
-			break;
-		case "right":
-			touche = "right";
-			break;
-		default:
-			touche = "";
-			break;
-		}
-
+		
 	}
 
 }

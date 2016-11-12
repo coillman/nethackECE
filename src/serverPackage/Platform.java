@@ -21,6 +21,7 @@ public class Platform {
 			}
 		}
 		monBac = new Bac();
+		persosOnPlat =new ArrayList<Personnage>();
 	}
 
 	// GETTERS---------------------------------------------------------------------
@@ -96,7 +97,8 @@ public class Platform {
 		 * ajoute le perso (Warrior) à la liste persosOnPlat
 		 */
 		for(int i=0; i<nb; i++){
-			persosOnPlat.add(new Warrior(getSortieCo()[1], getSortieCo()[0]));
+			//persosOnPlat.add(new Warrior(getSortieCo()[1], getSortieCo()[0]));
+			persosOnPlat.add(new Warrior(2,5));
 		}
 	}
 
@@ -121,19 +123,7 @@ public class Platform {
 		switch(category) {
 	        case "move" :
 	        	/** move Perso block **/
-	        	int coordxx, coordyy;
-	        	int coordx = perso.getPersoPosX();
-	        	int coordy = perso.getPersoPosY();
-		        	//convert arg  to position 
-	        		if (argument == "up")		{coordxx=coordx;coordyy=coordy-1;}
-		        	else if (argument == "left"){coordxx=coordx-1;coordyy=coordy;}
-		        	else if (argument == "down"){coordxx=coordx;coordyy=coordy+1;}
-		        	else if (argument == "right"){coordxx=coordx+1;coordyy=coordy;}
-		        	else{coordxx=coordx;coordyy=coordy;}
-	        		//test if the move is possible 
-	        		if (isMovePossible(coordxx, coordyy)){
-	        			//here we can move the perso
-	        		}
+	        	move(idperso, argument);
 		        break;
 	        	
 	        case "pick" :
@@ -199,7 +189,7 @@ public class Platform {
 		 * condition sur les cases qui ne permettent pas le déplacement
 		 */
 		boolean ispossible = true;
-		if(tab[lig][col].affichage == '-' | tab[lig][col].initial == '|'){
+		if(tab[lig][col].affichage == '-' || tab[lig][col].initial == '|'){
 			
 			ispossible = false;
 		}
