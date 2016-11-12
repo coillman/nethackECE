@@ -84,13 +84,13 @@ public class Platform {
 		for (int i = 0; i < lig; i++) {
 			for (int j = 0; j < col; j++) {
 				if(tab[i][j].initial == '>'){
-					System.out.println("trouvé");
+					//System.out.println("trouvé");
 					coo[0]=i;
 					coo[1]=j;
 				}
 			}
 		}
-		System.out.println(coo[0] + coo[1]);
+		//System.out.println(coo[0] + coo[1]);
 		return coo;
 	}
 
@@ -162,6 +162,7 @@ public class Platform {
 			persosOnPlat.get(idperso).setPersoPosY(nextCo[0]);
 			persosOnPlat.get(idperso).setPersoPosX(nextCo[1]);
 		}
+		tab[persosOnPlat.get(idperso).getPersoPosY()][persosOnPlat.get(idperso).getPersoPosX()].removePerso(persosOnPlat.get(idperso));
 	}
 
 	public int[] dirToCo(String dir){
