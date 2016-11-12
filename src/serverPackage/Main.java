@@ -12,6 +12,7 @@ public class Main {
 	
 	public static void main(String[] args) {
 		
+		//******** premiers tests *********
 		/*
 		 * try{ Server monserv = new Server(18000); monserv.launchServer(); }
 		 * catch(IOException e){ }
@@ -32,9 +33,12 @@ public class Main {
 			e.printStackTrace();
 		}
 */
+		//******** fin premiers tests *********
 		
-		  //test kevin
-		  
+//-------------------------------------------------------------------------------------------
+		
+		  //******** test kevin *********
+/*
 		  Wizard gandalf = new Wizard(); 
 		  Gobelin gob = new Gobelin(); 
 		  
@@ -64,7 +68,8 @@ public class Main {
 		  
 		  System.out.println(gandalf.getLife());
 		  System.out.println(gob.getLife());
-		 
+*/
+		//******** fin test kevin *********
 		
 		
 //-------------------------------------------------------------------------------------------
@@ -120,6 +125,48 @@ public class Main {
 		
 		********** fin 11/11/2016 ****************
 		*/
+//-------------------------------------------------------------------------------------------
+		// déclaration des varibales
+		boolean levelup = false;
+		int level = 0;
+		Server monserv;
+		int whoseTurn = 0;
+		int port;
+		int nbJoueur;
+		String action;
+
+		// demande du numéro de port à l'utilisatreur
+		System.out.println("numero de port :");
+		Scanner sc1 = new Scanner(System.in);
+		port = sc1.nextInt();
+		//sc1.close();
+
+		// demande du nombre de joueurs de la partie
+		System.out.println("nombre de joueurs :");
+		Scanner sc2 = new Scanner(System.in);
+		nbJoueur = sc2.nextInt();
+		//sc2.close();
+
+		// ouverture du server et attente de la connexion des joueurs
+		monserv = new Server(port);
+		System.out.println("attente des joueurs...");
+		monserv.acceptCo(nbJoueur);
+
+		System.out.println("la partie peut commencer !");
+		
+		//boucle de test : affichage coté server des commandes clients
+		int i = 0;
+		while (i < 6) {
+			System.out.println("turn :" + whoseTurn);
+			action = monserv.listen(whoseTurn);
+			System.out.println("commande recue :" + action);
+			
+			whoseTurn ++;
+			whoseTurn = whoseTurn % nbJoueur;
+			i++;
+		}
+		
+
 	}
 
 }

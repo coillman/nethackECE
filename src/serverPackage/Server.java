@@ -10,8 +10,7 @@ import java.io.*;
 public class Server {
 	private int port;
 	private ServerSocket sersoc;
-	protected ArrayList<Socket> listSoc;
-	
+	protected ArrayList<Socket> listSoc;	
 
 	public Server(int port){
 		try{
@@ -57,24 +56,23 @@ public class Server {
 		try {
 			ObjectOutputStream oos = new ObjectOutputStream(soc.getOutputStream());
 			oos.writeObject(mamap.getBac());
-			oos.close();
+			//oos.close();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
 	
 	public String listen(int idJoueur){
-		Bac monbac = new Bac();
+		Bac bacIn = new Bac();
 		try{
-		InputStream stream = listSoc.get(idJoueur).getInputStream();
-		ObjectInputStream ois = new ObjectInputStream(stream);
-		monbac = (Bac) ois.readObject();
-		ois.close();
-		
+			ObjectInputStream ois = new ObjectInputStream(listSoc.get(idJoueur).getInputStream());
+			bacIn = (Bac) ois.readObject();
+			//ois.close();
+			
 		}catch(IOException | ClassNotFoundException e){
 			e.printStackTrace();
 		}
-		return monbac.action;
+		return bacIn.action;
 	}
 	
 	/*

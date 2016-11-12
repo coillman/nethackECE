@@ -11,21 +11,22 @@ public class ClientView  {
 	Client instanceClient;
 	
 	public ClientView(int port){
-		instanceClient = new Client(null, port);
+		instanceClient = new Client("localhost", port);
 		clientIpnut = "";
 	}
 	
 	
 
 
-	public void getClientInput() throws IOException{
+	public String getClientInput() throws IOException{
 		String dir;
 		BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
-		while (clientIpnut.equalsIgnoreCase("quit") == false) {
-			
+		//while (clientIpnut.equalsIgnoreCase("quit") == false) {
+			System.out.println("your turn !");
 			clientIpnut = in.readLine();
 			if (clientIpnut.matches("z|s|q|d")){
 				dir= this.getDirection(clientIpnut);
+				clientIpnut = dir;
 				System.out.println("cmd: "+ dir);
 			}else if(clientIpnut.contains("use")){
 				System.out.println("use an item");
@@ -37,11 +38,11 @@ public class ClientView  {
 				System.out.println("cmd unkown ...");
 			}
 			
-		}
-		in.close();
-		
-		
+		//}
+		//in.close();
+		return clientIpnut;
 	}
+
 	
 	private String getDirection(String key){
 		/* z: 'up'
