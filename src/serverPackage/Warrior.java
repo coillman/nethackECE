@@ -7,13 +7,15 @@ public class Warrior extends Personnage{
 
 	private ArrayList<Item> inventory;
 	
-	public Warrior() {
+	public Warrior(int x, int y) {
+		super(x, y);
 		this.setLife(50);
 		this.setResistance(70);
 		this.setStrength(80);
 		this.setLuck(5);
 		this.persoType = "player";
 		this.inventory = new ArrayList<Item>();
+		affichage = '@';
 	}
 	
 	// Item management

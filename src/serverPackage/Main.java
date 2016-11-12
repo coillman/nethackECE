@@ -155,6 +155,8 @@ public class Main {
 		monserv = new Server(port);
 		System.out.println("attente des joueurs...");
 		monserv.acceptCo(nbJoueur);
+		
+		mamap.addPersos(nbJoueur);
 
 		System.out.println("la partie peut commencer !");
 				
@@ -165,6 +167,7 @@ public class Main {
 			mamap.loadPlateform("Plateforme/level" + level + ".txt");
 			
 			while(!levelup){
+				mamap.placePersos();
 				mamap.createView();
 				monserv.spread(mamap, whoseTurn);
 				System.out.println("turn :" + whoseTurn);

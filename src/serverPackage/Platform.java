@@ -1,7 +1,6 @@
 package serverPackage;
 
 import commonPackage.Bac;
-
 import java.io.*;
 import java.util.ArrayList;
 
@@ -75,14 +74,30 @@ public class Platform {
 		 * map
 		 */
 		for (Personnage perso : this.persosOnPlat) {
-			this.tab[perso.getPersoPosX()][perso.getPersoPosY()].addPerso(perso);
+			this.tab[perso.getPersoPosY()][perso.getPersoPosX()].addPerso(perso);
 		}
 	}
+	
+	public int[] getSortieCo(){
+		int[] coo = new int[2];
+		for (int i = 0; i < lig; i++) {
+			for (int j = 0; j < col; j++) {
+				if(tab[i][j].initial == '>'){
+					coo[0]=lig;
+					coo[1]=col;
+				}
+			}
+		}
+		return coo;
+	}
 
-	public void addPerso(Personnage perso) {
+	public void addPersos(int nb) {
 		/*
-		 * ajoute le perso à la liste persosOnPlat
+		 * ajoute le perso (Warrior) à la liste persosOnPlat
 		 */
+		for(int i=0; i<nb; i++){
+			persosOnPlat.add(new Warrior(getSortieCo()[1], getSortieCo()[0]));
+		}
 	}
 
 	public void apply(String action, int idperso) {
@@ -90,20 +105,55 @@ public class Platform {
 		 * en fonction de action, appel la bonne méthode
 		 */
 		
-
+	}
+	
+	
+	public void move(int idperso, String dir){
+		int[] coo = new int[2];
+		coo = dirToCo(dir);
+		int[] nextCo = new int[2];
+		nextCo[0] = persosOnPlat.get(idperso).getPersoPosY() + coo[0];
+		nextCo[1] = persosOnPlat.get(idperso).getPersoPosX() + coo[1];
+		if (isMovePossible(nextCo[0],nextCo[1])){
+			persosOnPlat.get(idperso).setPersoPosY(nextCo[0]);
+			persosOnPlat.get(idperso).setPersoPosX(nextCo[1]);
+		}
 	}
 
-	public boolean isMovePossible(int cooX, int cooY) {
+	public int[] dirToCo(String dir){
+		int[] coo = new int[2];
+		switch (dir){
+		case "up":
+			coo[0] = 0;
+			coo[1] = 1;
+			break;
+		case "down":
+			coo[0] = 0;
+			coo[1] = -1;
+			break;
+		case "left":
+			coo[0] = -1;
+			coo[1] = 0;
+			break;
+		case "right":
+			coo[0] = 1;
+			coo[1] = 0;
+			break;
+		}
+		return coo;
+	}
+	
+	public boolean isMovePossible(int lig, int col) {
 		/*
 		 * condition sur les cases qui ne permettent pas le déplacement
 		 */
 		boolean ispossible = true;
-		if(tab[cooX][cooY].affichage == '-' | tab[cooX][cooY].initial == '|'){
+		if(tab[lig][col].affichage == '-' | tab[lig][col].initial == '|'){
 			
 			ispossible = false;
 		}
 		for (Personnage perso : persosOnPlat){
-			if(perso.getPersoPosX() == cooX && perso.getPersoPosY() == cooY && tab[cooX][cooY].initial != '>' && tab[cooX][cooY].initial != '<'){
+			if(perso.getPersoPosY() == lig && perso.getPersoPosX() == col && tab[lig][col].initial != '>' && tab[lig][col].initial != '<'){
 				ispossible = false;
 			}
 		}
@@ -111,5 +161,6 @@ public class Platform {
 		return ispossible;
 		
 	}
+	
 
 }
