@@ -67,11 +67,17 @@ public class Platform {
 				this.getBac().affichetab[i][j] = tab[i][j].affichage;
 			}
 		}
-		wipePersos();
+
 	}
 	
-	public void wipePersos(){
-		
+	public Personnage persoIsHere(int[] attCo){
+		Personnage isHere = null;
+		for (Personnage perso : this.persosOnPlat) {
+			if(perso.getPersoPosY() == attCo[0] && perso.getPersoPosX() == attCo[1]){
+				isHere = perso;
+			}
+		}
+		return isHere;
 	}
 	
 	public void placeItems(){
@@ -163,7 +169,7 @@ public class Platform {
 	        	
 	        case "attack" :
 	        	/** attack opponent block **/
-	        	
+	        	attackPos(idperso, argument);
 	        	break;
 	        	
 	        case "quit" :    	break;	        
@@ -171,6 +177,17 @@ public class Platform {
 		}
 
 		
+	}
+	
+	public void attackPos(int idperso, String dir){
+		int[] coo = new int[2];
+		coo = dirToCo(dir);
+		int[] attCo = new int[2];
+		attCo[0] = persosOnPlat.get(idperso).getPersoPosY() + coo[0];
+		attCo[1] = persosOnPlat.get(idperso).getPersoPosX() + coo[1];
+		if(persoIsHere(attCo) != null){
+			persosOnPlat.get(idperso).attack(persoIsHere(attCo));
+		}
 	}
 	
 	
