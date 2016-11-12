@@ -12,7 +12,7 @@ public class Wizard extends Personnage{
 		this.setResistance(30);
 		this.setStrength(60);
 		this.setLuck(9);
-		
+		this.persoType = "player";
 		this.inventory = new ArrayList<Item>();
 	}
 

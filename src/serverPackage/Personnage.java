@@ -11,6 +11,7 @@ public abstract class Personnage {
 	private int strength;
 	private int luck;
 	private int resistance;
+	protected String persoType;
 	
 	private int posX;
 	private int posY;

@@ -8,6 +8,7 @@ public class Gobelin extends Personnage{
 		this.setResistance(50);
 		this.setStrength(50);
 		this.setLuck(8);
+		this.persoType = "monster";
 	}
 	
 

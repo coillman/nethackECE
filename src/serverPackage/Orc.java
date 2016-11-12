@@ -8,6 +8,7 @@ public class Orc extends Personnage{
 		this.setResistance(90);
 		this.setStrength(40);
 		this.setLuck(3);
+		this.persoType = "monster";
 	}
 
 
