@@ -21,7 +21,7 @@ public abstract class Personnage {
 	private ArrayList<String> listItem;
 	protected char affichage;
 
-	public Personnage() {
+	public Personnage(int x, int y) {
 		// default value
 		/*
 		 * this.life =50 ; this.strength= 50; this.luck = 6; this.resistance =
@@ -30,9 +30,9 @@ public abstract class Personnage {
 		 * this.listItem.add("");
 		 */
 
-		/** Set random position **/
-		// this.posX = (int)(Math.random()*10+1);
-		// this.posY = (int)(Math.random()*10+1);
+		/** Set position **/
+		this.posX = x;
+		this.posY = y;
 
 	}
 
