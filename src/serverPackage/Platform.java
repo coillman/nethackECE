@@ -68,6 +68,21 @@ public class Platform {
 			}
 		}
 	}
+	
+	public void placeItems(){
+		Potion elixir = new Potion();
+		Armure shield = new Armure();
+		Food apple = new Food();
+		Weapon wand = new Weapon();
+		Weapon sword = new Weapon();
+	}
+	
+	public void placeMonsters(){
+		Orc bossMonster=new Orc(7,9);
+		Gobelin smallFry = new Gobelin(3,5);
+		this.tab[bossMonster.getPersoPosY()][bossMonster.getPersoPosX()].addPerso(bossMonster);
+		this.tab[smallFry.getPersoPosY()][smallFry.getPersoPosX()].addPerso(smallFry);
+	}
 
 	public void placePersos() {
 		/*
