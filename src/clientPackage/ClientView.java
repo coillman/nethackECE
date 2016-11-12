@@ -22,44 +22,53 @@ public class ClientView  {
 
 	public String getClientInput() throws IOException{
 		String dir;
+		boolean runningState =false;
 		BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
 		//while (clientIpnut.equalsIgnoreCase("quit") == false) {
+		while (runningState == false) {
 			System.out.println("your turn !");
 			clientIpnut = in.readLine();
 			
 			if (clientIpnut.matches("z|s|q|d")){
 				//direction key event
 				dir= this.getDirection(clientIpnut);
-				clientIpnut = dir;
-				System.out.println("cmd: "+ dir);
+				clientIpnut = "move:"+dir;
+				runningState =true;
 				
 			}else if(clientIpnut.contains("use")){
 				// use item event
 				String itemName = this.getItemToUse(clientIpnut);
 				if(this.checkInInventory(itemName)){
 					// check if item is in inventory
+					clientIpnut ="use:"+itemName;
 				}
-				System.out.println("use an item");
+				runningState =true;
 			
 			}else if(clientIpnut.contains("pick")){
 				// pick item event
 				String itemtoAdd = getItemtoPick(clientIpnut);
+				clientIpnut ="pick:"+itemtoAdd;
 				// pass to itemtoAdd to an Inventory
+				runningState =true;
 				
 			}else if(clientIpnut.contains("attack")){
 				//attack opponent event
 				String perso = this.getOpponentToAttack(clientIpnut);
-				
+				clientIpnut ="attack:"+perso;
+				runningState =true;
 			
 			}else if(clientIpnut.matches("quit")) {
 				//test if player wants to quit
 				System.out.println("Good bye! :)");
-			
+				clientIpnut="quit:";
+				runningState =true;
+				
 			}else {
 				// otherwise the event is unknown
-				System.out.println("cmd unkown ...");
+				System.out.println("Command unknown, please type a correct action!");
+				runningState =false;
 			}
-			
+		}	
 		//}
 		//in.close();
 		return clientIpnut;
