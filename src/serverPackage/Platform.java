@@ -89,13 +89,27 @@ public class Platform {
 		/*
 		 * en fonction de action, appel la bonne méthode
 		 */
+		
 
-		// this.tab[perso]
 	}
 
 	public boolean isMovePossible(int cooX, int cooY) {
-
-		return false;
+		/*
+		 * condition sur les cases qui ne permettent pas le déplacement
+		 */
+		boolean ispossible = true;
+		if(tab[cooX][cooY].affichage == '-' | tab[cooX][cooY].initial == '|'){
+			
+			ispossible = false;
+		}
+		for (Personnage perso : persosOnPlat){
+			if(perso.getPersoPosX() == cooX && perso.getPersoPosY() == cooY && tab[cooX][cooY].initial != '>' && tab[cooX][cooY].initial != '<'){
+				ispossible = false;
+			}
+		}
+		
+		return ispossible;
+		
 	}
 
 }

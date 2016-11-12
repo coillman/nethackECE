@@ -148,16 +148,16 @@ public class Main {
 		nbJoueur = sc2.nextInt();
 		//sc2.close();
 
+		// instantiation de la plateformes de jeux
+		Platform mamap = new Platform();
+		
 		// ouverture du server et attente de la connexion des joueurs
 		monserv = new Server(port);
 		System.out.println("attente des joueurs...");
 		monserv.acceptCo(nbJoueur);
 
 		System.out.println("la partie peut commencer !");
-		
-		// instantiation de la plateformes de jeux
-		Platform mamap = new Platform();
-		
+				
 
 		while (level>0) {//condition à changer pour inclure win 
 			
@@ -170,6 +170,7 @@ public class Main {
 				System.out.println("turn :" + whoseTurn);
 				action = monserv.listen(whoseTurn);
 				System.out.println("commande recue :" + action);
+				mamap.apply(action, whoseTurn);
 				
 				whoseTurn ++;
 				whoseTurn = whoseTurn % nbJoueur;
