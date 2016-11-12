@@ -37,6 +37,20 @@ public class Client {
 		}
 
 	}
+	
+	public Bac listen(){
+		Bac bacIn = new Bac();
+		try {
+			InputStream stream = comm.getInputStream();
+			ObjectInputStream ois = new ObjectInputStream(stream);
+			bacIn = (Bac) ois.readObject();
+			//ois.close();
+			
+		} catch (ClassNotFoundException | IOException r) {
+			r.printStackTrace();
+		}
+		return bacIn;
+	}
 }
 
 

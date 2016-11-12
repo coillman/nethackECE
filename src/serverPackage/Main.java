@@ -129,7 +129,7 @@ public class Main {
 //-------------------------------------------------------------------------------------------
 		// déclaration des varibales
 		boolean levelup = false;
-		int level = 0;
+		int level = 1;
 		Server monserv;
 		int whoseTurn = 0;
 		int port;
@@ -155,16 +155,25 @@ public class Main {
 
 		System.out.println("la partie peut commencer !");
 		
-		//boucle de test : affichage coté server des commandes clients
-		int i = 0;
-		while (i < 6) {
-			System.out.println("turn :" + whoseTurn);
-			action = monserv.listen(whoseTurn);
-			System.out.println("commande recue :" + action);
+		// instantiation de la plateformes de jeux
+		Platform mamap = new Platform();
+		
+
+		while (level>0) {//condition à changer pour inclure win 
 			
-			whoseTurn ++;
-			whoseTurn = whoseTurn % nbJoueur;
-			i++;
+			//remplissage de la map avec le fichier en paramètre
+			mamap.loadPlateform("Plateforme/level" + level + ".txt");
+			
+			while(!levelup){
+				mamap.createView();
+				monserv.spread(mamap, whoseTurn);
+				System.out.println("turn :" + whoseTurn);
+				action = monserv.listen(whoseTurn);
+				System.out.println("commande recue :" + action);
+				
+				whoseTurn ++;
+				whoseTurn = whoseTurn % nbJoueur;
+			}
 		}
 		
 
