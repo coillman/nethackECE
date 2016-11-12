@@ -68,8 +68,8 @@ public class Main {
 		
 		
 //-------------------------------------------------------------------------------------------
-	/*	**** 11/11 2016 *********
-	 * 
+	///*	**** 11/11 2016 *********
+	  
 		// déclaration des varibales 
 		boolean levelup = false;
 		int level = 0;
@@ -83,13 +83,13 @@ public class Main {
 		System.out.println("numero de port :");
 		Scanner sc1 = new Scanner(System.in);
 		port = sc1.nextInt();
-		sc1.close();
+		//sc1.close();
 		
 		//demande du nombre de joueurs de la partie
 		System.out.println("nombre de joueurs :");
 		Scanner sc2 = new Scanner(System.in);
 		nbJoueur = sc2.nextInt();
-		sc2.close();
+		//sc2.close();
 		
 		//ouverture du server et attente de la connexion des joueurs
 		monserv = new Server(port);
@@ -113,13 +113,13 @@ public class Main {
 				mamap.createView();
 				monserv.spread(mamap, whoseTurn);
 				action = monserv.listen(whoseTurn);
-				mamap.apply(action, whoseTurn;)
+				mamap.apply(action, whoseTurn);
 				
 			}
 		}
 		
-		********** fin 11/11/2016 ****************
-		*/
+		//********** fin 11/11/2016 ****************
+		
 	}
 
 }
