@@ -67,6 +67,11 @@ public class Platform {
 				this.getBac().affichetab[i][j] = tab[i][j].affichage;
 			}
 		}
+		wipePersos();
+	}
+	
+	public void wipePersos(){
+		
 	}
 
 	public void placePersos() {
@@ -75,7 +80,9 @@ public class Platform {
 		 * map
 		 */
 		for (Personnage perso : this.persosOnPlat) {
-			this.tab[perso.getPersoPosY()][perso.getPersoPosX()].addPerso(perso);
+			if(!tab[perso.getPersoPosY()][perso.getPersoPosX()].getListePerso().contains(perso)){
+				this.tab[perso.getPersoPosY()][perso.getPersoPosX()].addPerso(perso);
+			}
 		}
 	}
 	
@@ -158,11 +165,11 @@ public class Platform {
 		nextCo[0] = persosOnPlat.get(idperso).getPersoPosY() + coo[0];
 		nextCo[1] = persosOnPlat.get(idperso).getPersoPosX() + coo[1];
 		if (isMovePossible(nextCo[0],nextCo[1])){
-			tab[persosOnPlat.get(idperso).getPersoPosY()][persosOnPlat.get(idperso).getPersoPosX()].removePerso(persosOnPlat.get(idperso));
+			tab[persosOnPlat.get(idperso).getPersoPosY()][persosOnPlat.get(idperso).getPersoPosX()].removePersos();
 			persosOnPlat.get(idperso).setPersoPosY(nextCo[0]);
 			persosOnPlat.get(idperso).setPersoPosX(nextCo[1]);
 		}
-		tab[persosOnPlat.get(idperso).getPersoPosY()][persosOnPlat.get(idperso).getPersoPosX()].removePerso(persosOnPlat.get(idperso));
+		tab[persosOnPlat.get(idperso).getPersoPosY()][persosOnPlat.get(idperso).getPersoPosX()].removePersos();
 	}
 
 	public int[] dirToCo(String dir){

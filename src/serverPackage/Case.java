@@ -17,6 +17,11 @@ public class Case {
 		initial = 'x';
 		affichage = 'x';
 	}
+	
+	// GETTERS
+	public ArrayList<Personnage> getListePerso(){
+		return listePerso;
+	}
 
 	// METHODES
 	public void setPriority() {
@@ -36,8 +41,11 @@ public class Case {
 		listePerso.add(perso);
 	}
 	
-	public void removePerso(Personnage perso){
-		listePerso.remove(perso);
+	public void removePersos(){
+		for(int i = 0; i<listePerso.size(); i++){
+			listePerso.remove(i);
+		}
+		
 	}
 
 }
