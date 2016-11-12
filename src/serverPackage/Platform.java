@@ -84,11 +84,13 @@ public class Platform {
 		for (int i = 0; i < lig; i++) {
 			for (int j = 0; j < col; j++) {
 				if(tab[i][j].initial == '>'){
-					coo[0]=lig;
-					coo[1]=col;
+					System.out.println("trouvé");
+					coo[0]=i;
+					coo[1]=j;
 				}
 			}
 		}
+		System.out.println(coo[0] + coo[1]);
 		return coo;
 	}
 
@@ -97,8 +99,8 @@ public class Platform {
 		 * ajoute le perso (Warrior) à la liste persosOnPlat
 		 */
 		for(int i=0; i<nb; i++){
-			//persosOnPlat.add(new Warrior(getSortieCo()[1], getSortieCo()[0]));
-			persosOnPlat.add(new Warrior(2,5));
+			persosOnPlat.add(new Warrior(getSortieCo()[1], getSortieCo()[0]));
+			//persosOnPlat.add(new Warrior(2,5));
 		}
 	}
 
@@ -156,6 +158,7 @@ public class Platform {
 		nextCo[0] = persosOnPlat.get(idperso).getPersoPosY() + coo[0];
 		nextCo[1] = persosOnPlat.get(idperso).getPersoPosX() + coo[1];
 		if (isMovePossible(nextCo[0],nextCo[1])){
+			tab[persosOnPlat.get(idperso).getPersoPosY()][persosOnPlat.get(idperso).getPersoPosX()].removePerso(persosOnPlat.get(idperso));
 			persosOnPlat.get(idperso).setPersoPosY(nextCo[0]);
 			persosOnPlat.get(idperso).setPersoPosX(nextCo[1]);
 		}
@@ -165,36 +168,36 @@ public class Platform {
 		int[] coo = new int[2];
 		switch (dir){
 		case "up":
-			coo[0] = 0;
-			coo[1] = 1;
-			break;
-		case "down":
-			coo[0] = 0;
-			coo[1] = -1;
-			break;
-		case "left":
 			coo[0] = -1;
 			coo[1] = 0;
 			break;
-		case "right":
+		case "down":
 			coo[0] = 1;
 			coo[1] = 0;
+			break;
+		case "left":
+			coo[0] = 0;
+			coo[1] = -1;
+			break;
+		case "right":
+			coo[0] = 0;
+			coo[1] = 1;
 			break;
 		}
 		return coo;
 	}
 	
-	public boolean isMovePossible(int lig, int col) {
+	public boolean isMovePossible(int li, int co) {
 		/*
 		 * condition sur les cases qui ne permettent pas le déplacement
 		 */
 		boolean ispossible = true;
-		if(tab[lig][col].affichage == '-' || tab[lig][col].initial == '|'){
+		if(tab[li][co].affichage == '-' || tab[li][co].initial == '|' || tab[li][co].initial == ' '){
 			
 			ispossible = false;
 		}
 		for (Personnage perso : persosOnPlat){
-			if(perso.getPersoPosY() == lig && perso.getPersoPosX() == col && tab[lig][col].initial != '>' && tab[lig][col].initial != '<'){
+			if(perso.getPersoPosY() == li && perso.getPersoPosX() == co && tab[li][co].initial != '>' && tab[li][co].initial != '<'){
 				ispossible = false;
 			}
 		}
