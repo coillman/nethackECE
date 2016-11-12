@@ -168,6 +168,9 @@ public class Main {
 			mamap.addPersos(nbJoueur);
 			
 			while(!levelup){
+				
+				mamap.placeMonsters();
+				
 				mamap.placePersos();
 				mamap.createView();
 				monserv.spread(mamap, whoseTurn);
