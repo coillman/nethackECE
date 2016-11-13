@@ -32,15 +32,16 @@ public class ClientMain {
 		while(!quit){
 			bacIn = monclient.instanceClient.listen();
 			monclient.affiche(bacIn);
-			if(bacIn.message == "you are dead!"){
+			/*if(bacIn.message == "you are dead!"){
 				quit = true;
-			}
+				System.out.println(quit);
+			}*/
 			if(bacIn.monTour){
 				bacOut.action = monclient.getClientInput();
 				monclient.instanceClient.sendRequest(bacOut);
 			}
 		}
-		
+		System.out.println("vous avez quitter la partie.");
 		monclient.finish();
 	}
 

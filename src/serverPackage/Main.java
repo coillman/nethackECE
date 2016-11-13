@@ -172,7 +172,9 @@ public class Main {
 			mamap.placeMonsters();
 			
 			while(level == nextLevel){
-					
+				if(mamap.allDead()){
+					nextLevel = -1;
+				}	
 				mamap.placePersos();
 				mamap.createView();
 				monserv.spread(mamap, whoseTurn);
@@ -186,10 +188,6 @@ public class Main {
 				nextLevel = mamap.nextLevel(level);
 				whoseTurn ++;
 				whoseTurn = whoseTurn % nbJoueur;
-				
-				if(mamap.allDead()){
-					level = -1;
-				}
 			}
 			level = nextLevel;
 		}
