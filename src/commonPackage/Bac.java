@@ -16,6 +16,10 @@ public class Bac implements Serializable {
 	public String message;
 	public String action;
 	public String items;
+	public int life;
+	public int strength;
+	public int luck;
+	public int resistance;
 	public boolean monTour=false;
 
 	// CONSTRUCTEURS---------------------------------------------------------------

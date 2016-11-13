@@ -75,7 +75,8 @@ public class Wizard extends Personnage{
 	}
 
 	public void pickItem(Item item) {
-		System.out.println("You took: " + item.getItemType());
+		setMessage("You took a " + item.getItemType());
+		System.out.println(getMessage());
 		inventory.add(item);
 	}
 

@@ -146,6 +146,11 @@ public class ClientView  {
 		for (int i = 0; i < 24; i++) {
 			System.out.println(bac.affichetab[i]);
 		}
+		System.out.print("life:" + bac.life);
+		System.out.print(" | strength:" + bac.strength);
+		System.out.print(" | luck:" + bac.luck);
+		System.out.println(" | resistance:" + bac.resistance);
 		System.out.println("items : " + bac.items);
+		System.out.println(bac.message);
 	}
 }

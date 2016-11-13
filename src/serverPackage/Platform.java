@@ -254,12 +254,16 @@ public class Platform {
 		int[] coo = new int[2];
 		coo = dirToCo(dir);
 		int[] nextCo = new int[2];
-		nextCo[0] = persosOnPlat.get(idperso).getPersoPosY() + coo[0];
-		nextCo[1] = persosOnPlat.get(idperso).getPersoPosX() + coo[1];
+		Personnage perso = persosOnPlat.get(idperso);
+		nextCo[0] = perso.getPersoPosY() + coo[0];
+		nextCo[1] = perso.getPersoPosX() + coo[1];
 		if (isMovePossible(nextCo[0],nextCo[1])){
-			tab[persosOnPlat.get(idperso).getPersoPosY()][persosOnPlat.get(idperso).getPersoPosX()].removePersos();
-			persosOnPlat.get(idperso).setPersoPosY(nextCo[0]);
-			persosOnPlat.get(idperso).setPersoPosX(nextCo[1]);
+			tab[perso.getPersoPosY()][perso.getPersoPosX()].removePersos();
+			perso.setPersoPosY(nextCo[0]);
+			perso.setPersoPosX(nextCo[1]);
+			perso.setMessage("");
+		}else{
+			perso.setMessage("no no no, you can't go there !");
 		}
 		tab[persosOnPlat.get(idperso).getPersoPosY()][persosOnPlat.get(idperso).getPersoPosX()].removePersos();
 	}
@@ -318,6 +322,11 @@ public class Platform {
 		 */
 		Personnage perso = persosOnPlat.get(idperso);
 		Bac persoBac = this.monBac;
+		persoBac.life = perso.getLife();
+		persoBac.strength = perso.getStrength();
+		persoBac.luck = perso.getLuck();
+		persoBac.resistance = perso.getResistance();
+		persoBac.message = perso.getMessage();
 		if (perso.persoType == "wizard"){
 			Wizard persoWiz = (Wizard)perso;
 			persoBac.items = persoWiz.getAllItem().toString();

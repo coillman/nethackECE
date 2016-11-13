@@ -11,6 +11,7 @@ public abstract class Personnage {
 	private int strength;
 	private int luck;
 	private int resistance;
+	private String message = "";
 	protected String persoType;
 
 	private int posX;
@@ -86,9 +87,20 @@ public abstract class Personnage {
 	public void setStrength(int newStrength) {
 		this.strength = newStrength;
 	}
+	
+	public String getMessage(){
+		return this.message;
+	}
+	
+	public void setMessage(String m){
+		this.message = m;
+	}
+	
+	
 
 	public void attack(Personnage target) {
-		System.out.println("vous avez attaqué !");
+		message = "vous avez attaqué !";
+		System.out.println(message);
 		int damage = 0;
 		float factor = ((float) this.getLuck() / 12);
 		damage = ((int) (this.getStrength() * (Math.random() + factor)) - target.getResistance());
@@ -101,14 +113,16 @@ public abstract class Personnage {
 				target.setLife(targetNewLife);
 			}
 		} else {
-			System.out.println("attack not effective!");
+			message = "attack not effective!";
+			System.out.println(message);
 		}
 
 	}
 
 	public void die() {
 		this.setLife(0);
-		System.out.println("you're dead!");
+		message = "you're dead!";
+		System.out.println(message);
 
 	}
 
