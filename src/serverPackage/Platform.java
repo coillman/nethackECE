@@ -72,6 +72,14 @@ public class Platform {
 
 	}
 	
+
+	public void decreasePersosLife(){
+		for (Personnage perso : this.persosOnPlat) {
+			perso.decreaseLife();
+		}
+	}
+	
+
 	public boolean allDead(){
 		boolean alldead = true;
 		for (Personnage perso : this.persosOnPlat) {
@@ -81,6 +89,7 @@ public class Platform {
 		}
 		return alldead;
 	}
+
 
 	public boolean persoIsAlive(int id) {
 		boolean alive = true;

@@ -188,6 +188,15 @@ public class Main {
 				nextLevel = mamap.nextLevel(level);
 				whoseTurn ++;
 				whoseTurn = whoseTurn % nbJoueur;
+
+				if (whoseTurn == 0){
+					//System.out.println("decrease everyone's life");
+					mamap.decreasePersosLife();
+				}				
+				if(mamap.allDead()){
+					level = -1;
+				}
+
 			}
 			level = nextLevel;
 		}
