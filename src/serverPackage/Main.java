@@ -161,18 +161,18 @@ public class Main {
 
 		System.out.println("la partie peut commencer !");
 				
-		mamap.addPersos(nbJoueur);
+		
 		while (level>0) {//condition à changer pour inclure win 
 			
 			//remplissage de la map avec le fichier en paramètre
 			mamap.loadPlateform("Plateforme/level" + level + ".txt");
-			
+			mamap.addPersos(nbJoueur);	
 			
 			mamap.placeItems();
 			mamap.placeMonsters();
 			
 			while(level == nextLevel){
-						
+					
 				mamap.placePersos();
 				mamap.createView();
 				monserv.spread(mamap, whoseTurn);
