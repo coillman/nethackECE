@@ -12,6 +12,7 @@ public class Platform {
 	private Case[][] tab = new Case[lig][col];
 	private Bac monBac;
 	private ArrayList<Personnage> persosOnPlat;
+	private ArrayList<Personnage> monstersOnPlat;
 
 	// CONSTRUCTEURS---------------------------------------------------------------
 	public Platform() {
@@ -22,6 +23,7 @@ public class Platform {
 		}
 		monBac = new Bac();
 		persosOnPlat =new ArrayList<Personnage>();
+		monstersOnPlat =new ArrayList<Personnage>();
 	}
 
 	// GETTERS---------------------------------------------------------------------
@@ -77,6 +79,11 @@ public class Platform {
 				isHere = perso;
 			}
 		}
+		for (Personnage perso : this.monstersOnPlat) {
+			if(perso.getPersoPosY() == attCo[0] && perso.getPersoPosX() == attCo[1]){
+				isHere = perso;
+			}
+		}
 		return isHere;
 	}
 	
@@ -109,6 +116,11 @@ public class Platform {
 		 * map
 		 */
 		for (Personnage perso : this.persosOnPlat) {
+			if(!tab[perso.getPersoPosY()][perso.getPersoPosX()].getListePerso().contains(perso)){
+				this.tab[perso.getPersoPosY()][perso.getPersoPosX()].addPerso(perso);
+			}
+		}
+		for (Personnage perso : this.monstersOnPlat) {
 			if(!tab[perso.getPersoPosY()][perso.getPersoPosX()].getListePerso().contains(perso)){
 				this.tab[perso.getPersoPosY()][perso.getPersoPosX()].addPerso(perso);
 			}
