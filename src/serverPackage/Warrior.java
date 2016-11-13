@@ -112,7 +112,7 @@ public class Warrior extends Personnage{
 	public void use(Weapon arme){
 		int attackInc = arme.getAttackIncrease();
 		this.setStrength(this.getStrength()+attackInc);
-		this.deleteItem("arme");
+		this.deleteItem("weapon");
 	}
 	
 	//moves
