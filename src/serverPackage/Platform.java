@@ -78,7 +78,7 @@ public class Platform {
 		if (perso.getLife() <= 0) {
 			alive = false;
 		}
-		System.out.println("le perso " + id + " est en vie ? " + alive);
+		//System.out.println("le perso " + id + " est en vie ? " + alive);
 		return alive;
 	}
 
@@ -165,28 +165,39 @@ public class Platform {
 		}
 	}
 
-	public int[] getSortieCo() {
+	public int[] getDownCo() {
 		int[] coo = new int[2];
 		for (int i = 0; i < lig; i++) {
 			for (int j = 0; j < col; j++) {
 				if (tab[i][j].initial == '>') {
-					// System.out.println("trouvé");
 					coo[0] = i;
 					coo[1] = j;
 				}
 			}
 		}
-		// System.out.println(coo[0] + coo[1]);
 		return coo;
 	}
+
+	public int[] getUpCo() {
+		int[] coo = new int[2];
+		for (int i = 0; i < lig; i++) {
+			for (int j = 0; j < col; j++) {
+				if (tab[i][j].initial == '<') {
+					coo[0] = i;
+					coo[1] = j;
+				}
+			}
+		}
+		return coo;
+	}
+
 
 	public void addPersos(int nb) {
 		/*
 		 * ajoute le perso (Warrior) à la liste persosOnPlat
 		 */
 		for (int i = 0; i < nb; i++) {
-			persosOnPlat.add(new Warrior(getSortieCo()[1], getSortieCo()[0]));
-			// persosOnPlat.add(new Warrior(2,5));
+			persosOnPlat.add(new Warrior(getDownCo()[1], getDownCo()[0]));
 		}
 	}
 
@@ -375,6 +386,22 @@ public class Platform {
 			persoBac.items = persoWar.getAllItem();
 		}
 		return persoBac;
+	}
+	
+	public int nextLevel(int level) {
+		/*
+		 * ne gère que les level up
+		 */
+		int count = 0;
+		for(Personnage perso : persosOnPlat){
+			if(perso.getPersoPosX() == getUpCo()[1] && perso.getPersoPosY() == getUpCo()[0]){
+				count++;
+			}
+		}
+		if(count == persosOnPlat.size()){
+			level++;
+		}
+		return level;
 	}
 
 }

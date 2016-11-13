@@ -23,7 +23,7 @@ public abstract class Personnage {
 	protected char affichage;
 
 	public Personnage(int x, int y) {
-		// default value
+		// default value 
 		/*
 		 * this.life =50 ; this.strength= 50; this.luck = 6; this.resistance =
 		 * 50;

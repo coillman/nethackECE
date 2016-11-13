@@ -130,6 +130,7 @@ public class Main {
 		// déclaration des varibales
 		boolean levelup = false;
 		int level = 1;
+		int nextLevel = 1;
 		Server monserv;
 		int whoseTurn = 0;
 		int port;
@@ -160,17 +161,17 @@ public class Main {
 
 		System.out.println("la partie peut commencer !");
 				
-
+		mamap.addPersos(nbJoueur);
 		while (level>0) {//condition à changer pour inclure win 
 			
 			//remplissage de la map avec le fichier en paramètre
 			mamap.loadPlateform("Plateforme/level" + level + ".txt");
-			mamap.addPersos(nbJoueur);
+			
 			
 			mamap.placeItems();
 			mamap.placeMonsters();
 			
-			while(!levelup){
+			while(level == nextLevel){
 						
 				mamap.placePersos();
 				mamap.createView();
@@ -182,9 +183,11 @@ public class Main {
 					mamap.apply(action, whoseTurn);
 				}
 				
+				nextLevel = mamap.nextLevel(level);
 				whoseTurn ++;
 				whoseTurn = whoseTurn % nbJoueur;
 			}
+			level = nextLevel;
 		}
 		
 
