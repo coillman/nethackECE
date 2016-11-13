@@ -15,6 +15,7 @@ public class Bac implements Serializable {
 	public char[][] affichetab = new char[lig][col]; // vue cote client, seul
 	public String message;
 	public String action;
+	public String items;
 	public boolean monTour=false;
 
 	// CONSTRUCTEURS---------------------------------------------------------------

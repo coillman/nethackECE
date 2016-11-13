@@ -213,14 +213,15 @@ public class Platform {
 		if(temp !=null){
 			
 			Personnage perso = persosOnPlat.get(idperso);
-			if (persosOnPlat.get(idperso).persoType == "wizard"){ 
+			if (perso.persoType == "wizard"){ 
 				Wizard persoWiz = (Wizard)perso;
 				persoWiz.pickItem(temp);
 			}
-			else if(persosOnPlat.get(idperso).persoType =="warrior"){ 
+			else if(perso.persoType =="warrior"){ 
 				Warrior persoWar = (Warrior)perso;
 				persoWar.pickItem(temp);
-			}		
+			}	
+			tab[coo[0]][coo[1]].setItem(null);
 		}
 	}
 	
@@ -308,6 +309,24 @@ public class Platform {
 		
 		return ispossible;
 		
+	}
+	
+	
+	public Bac createPersoBac(int idperso){
+		/*
+		 * créé un bac personalisé pour le joueur en paramètre, se bas sur le bac de la plateforme
+		 */
+		Personnage perso = persosOnPlat.get(idperso);
+		Bac persoBac = this.monBac;
+		if (perso.persoType == "wizard"){
+			Wizard persoWiz = (Wizard)perso;
+			persoBac.items = persoWiz.getAllItem().toString();
+		}
+		if (perso.persoType == "warrior"){
+			Warrior persoWar = (Warrior)perso;
+			persoBac.items = persoWar.getAllItem().toString();
+		}
+		return persoBac;
 	}
 	
 

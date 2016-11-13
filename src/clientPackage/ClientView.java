@@ -146,5 +146,6 @@ public class ClientView  {
 		for (int i = 0; i < 24; i++) {
 			System.out.println(bac.affichetab[i]);
 		}
+		System.out.println("items : " + bac.items);
 	}
 }

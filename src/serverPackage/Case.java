@@ -22,6 +22,11 @@ public class Case {
 	public ArrayList<Personnage> getListePerso(){
 		return listePerso;
 	}
+	
+	//SETTERS
+	public void setItem(Item item){
+		this.item = item;
+	}
 
 	// METHODES
 	public void setPriority() {

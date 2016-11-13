@@ -41,21 +41,22 @@ public class Server {
 		 * envoie le Bac de la plateforme en paramètre
 		 */
 		for (Socket soc : listSoc) {
-			if(listSoc.indexOf(soc)==idJoueur){
-				mamap.getBac().monTour=true;
-				sendBac(mamap, soc);
-				mamap.getBac().monTour=false;
-			}
-			else{
-				sendBac(mamap, soc);
+			int id = listSoc.indexOf(soc);
+			Bac monbac = mamap.createPersoBac(id);
+			if(id == idJoueur){
+				monbac.monTour=true;
+				sendBac(monbac, soc);
+			}else{
+				monbac.monTour=false;
+				sendBac(monbac, soc);
 			}
 		}
 	}
 	
-	public void sendBac(Platform mamap, Socket soc){
+	public void sendBac(Bac monbac, Socket soc){
 		try {
 			ObjectOutputStream oos = new ObjectOutputStream(soc.getOutputStream());
-			oos.writeObject(mamap.getBac());
+			oos.writeObject(monbac);
 			//oos.close();
 		} catch (IOException e) {
 			e.printStackTrace();
