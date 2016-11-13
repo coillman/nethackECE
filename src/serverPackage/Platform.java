@@ -298,6 +298,11 @@ public class Platform {
 				ispossible = false;
 			}
 		}
+		for (Personnage perso : monstersOnPlat){
+			if(perso.getPersoPosY() == li && perso.getPersoPosX() == co){
+				ispossible = false;
+			}
+		}
 		
 		return ispossible;
 		
