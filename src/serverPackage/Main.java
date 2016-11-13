@@ -189,8 +189,8 @@ public class Main {
 				whoseTurn ++;
 				whoseTurn = whoseTurn % nbJoueur;
 
-				if (whoseTurn == 0){
-					System.out.println("decrease everyone's life");
+				if (whoseTurn == 0 && !mamap.allDead()){
+					//System.out.println("decrease everyone's life");
 					mamap.decreasePersosLife();
 				}				
 				/*if(mamap.allDead()){
