@@ -96,7 +96,12 @@ public abstract class Personnage {
 		this.message = m;
 	}
 	
-	
+	public void decreaseLife(){
+		//decrease life of player per turn
+		if(this.life>1){
+			this.life = this.life -1;
+		}
+	}
 
 	public void attack(Personnage target) {
 		int damage = 0;
@@ -127,7 +132,14 @@ public abstract class Personnage {
 	}
 
 	public void dropItem() {
-
+		int x=(Math.random()<0.5)?0:1;
+		if (this.persoType =="monster"){
+			if (x==1){
+				Weapon monsterWeapon = new Weapon();
+			}else{
+				Food monsterFood = new Food();
+			}
+		}
 	}
 
 	// Moving management
