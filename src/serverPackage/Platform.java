@@ -191,13 +191,20 @@ public class Platform {
 		return coo;
 	}
 
+	public void setPersoStartingCo(){
+		for (Personnage perso : persosOnPlat) {
+			this.tab[perso.getPersoPosY()][perso.getPersoPosX()].removePerso(perso);
+			perso.setPersoPosX(getDownCo()[1]);
+			perso.setPersoPosY(getDownCo()[0]);
+		}
+	}
 
 	public void addPersos(int nb) {
 		/*
 		 * ajoute le perso (Warrior) à la liste persosOnPlat
 		 */
 		for (int i = 0; i < nb; i++) {
-			persosOnPlat.add(new Warrior(getDownCo()[1], getDownCo()[0]));
+			persosOnPlat.add(new Warrior(0, 0));
 		}
 	}
 

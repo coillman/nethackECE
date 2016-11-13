@@ -157,7 +157,7 @@ public class Main {
 		System.out.println("attente des joueurs...");
 		monserv.acceptCo(nbJoueur);
 		
-		
+		mamap.addPersos(nbJoueur);
 
 		System.out.println("la partie peut commencer !");
 				
@@ -166,7 +166,7 @@ public class Main {
 			
 			//remplissage de la map avec le fichier en paramètre
 			mamap.loadPlateform("Plateforme/level" + level + ".txt");
-			mamap.addPersos(nbJoueur);	
+			mamap.setPersoStartingCo();
 			
 			mamap.placeItems();
 			mamap.placeMonsters();
