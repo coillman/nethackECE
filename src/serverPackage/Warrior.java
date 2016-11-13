@@ -89,7 +89,10 @@ public class Warrior extends Personnage{
 	}
 	
 	public void use(Potion potion) {
-		this.setLife(this.getLife() + potion.getPotionLife());
+		int newLuck = this.getLuck()+ potion.getPotionLuck();
+		if(newLuck < 11){ // the luck maximum value is 12
+			this.setLuck(newLuck);
+		}
 		this.deleteItem("potion");
 	}
 

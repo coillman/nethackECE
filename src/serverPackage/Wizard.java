@@ -90,7 +90,10 @@ public class Wizard extends Personnage{
 	}
 	
 	public void use(Potion potion) {
-		this.setLife(this.getLife() + potion.getPotionLife());
+		int newLuck = this.getLuck()+ potion.getPotionLuck();
+		if(newLuck < 11){ // the luck maximum value is 12
+			this.setLuck(newLuck);
+		}
 		this.deleteItem("potion");
 	}
 
@@ -114,7 +117,7 @@ public class Wizard extends Personnage{
 	public void use(Weapon arme){
 		int attackInc = arme.getAttackIncrease();
 		this.setStrength(this.getStrength()+attackInc);
-		this.deleteItem("arme");
+		this.deleteItem("weapon");
 	}
 	
 	// moves
