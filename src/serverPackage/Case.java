@@ -56,4 +56,7 @@ public class Case {
 		this.item = null;
 	}
 
+	public Item getItem(){
+		return item;
+	}
 }

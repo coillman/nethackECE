@@ -57,14 +57,24 @@ public class ClientView  {
 			}else if(clientIpnut.contains("attack")){
 				//attack opponent event
 				String perso = this.getOpponentToAttack(clientIpnut);
-				clientIpnut ="attack:"+perso;
-				runningState =true;
+				if(perso.isEmpty()){
+					runningState =false;
+ 					System.out.println("Which direction to attack?");
+				}else{
+					clientIpnut ="attack:"+perso;
+					runningState =true;
+				}
 			
 			}else if(clientIpnut.matches("quit")) {
 				//test if player wants to quit
 				System.out.println("Good bye! :)");
 				clientIpnut="quit:_";
 				runningState =true;
+				
+			}else if(clientIpnut.matches("show")) {
+				//test if player wants to quit
+				clientIpnut="show:item";
+				runningState =false;
 				
 			}else {
 				// otherwise the event is unknown

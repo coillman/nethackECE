@@ -29,7 +29,40 @@ public class Warrior extends Personnage{
 		}
 		return inventoryString;
 	}
-
+	
+	public ArrayList<Item> getInventoryList() {
+		//create an ArrayList of String to pass to the BAC	
+		ArrayList<Item>inventoryList = new ArrayList<Item>();
+		for (Iterator<Item> it = inventory.iterator(); it.hasNext(); ) {
+		    Item item = it.next();
+		    inventoryList.add(item);
+		}
+		return inventoryList;
+	}
+	
+	public Item getItemFromName(String itemName){
+		Item item = null;
+		for (Iterator<Item> it = inventory.iterator(); it.hasNext(); ) {
+		    Item itemtemp = it.next();
+		    //check if it's in inventory
+		    if (itemtemp.getItemType().equals(itemName)) {
+		    	//create the adequate Item
+		    	item =itemtemp;
+		    } 
+		}
+		return item;	
+	}
+	
+	public void use(Item item){
+		String itemtype =item.getItemType(); 
+		switch (itemtype){
+			case "potion" 	:this.use((Potion)item);	break;
+			case "food" 	:this.use((Food)item);	break;
+			case "weapon" 	:this.use((Weapon)item);	break;
+			case "armure" 	:this.use((Armure)item);	break;
+		}
+	}
+	
 	public void deleteItem(String itemtoDel) {
 		//remove the item trough iterator
 		for (Iterator<Item> it = inventory.iterator(); it.hasNext(); ) {

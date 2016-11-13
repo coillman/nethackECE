@@ -80,6 +80,13 @@ public class Platform {
 		return isHere;
 	}
 	
+	public Item itemIsHere(int[] itmCo){
+		Item itemThere = null;
+		itemThere = tab[itmCo[0]][itmCo[1]].getItem();
+		tab[itmCo[0]][itmCo[1]].removeItem(); //remove item from map
+		return itemThere; 
+	}
+	
 	public void placeItems(){
 		Potion elixir = new Potion();
 		Armure shield = new Armure();
@@ -139,15 +146,16 @@ public class Platform {
 		 */
 		String[] parts = action.split(":");
 		String category = parts[0]; //move , use , pick
-		String argument = parts[1]; //up , toto , potion 
+		String argument = parts[1]; //up  , potion 
 		
-		Personnage perso = persosOnPlat.get(idperso);
+		/*Personnage perso = persosOnPlat.get(idperso);
+		
 		if (perso.persoType == "wizard"){
-			perso = (Wizard)perso;
+			Wizard persoWiz = (Wizard)perso;
 		}
 		else if(perso.persoType =="warrior"){
-			perso = (Warrior)perso;
-		}
+			Warrior persoWar = (Warrior)perso;
+		}*/
 		//for(Personnage perso : persosOnPlat) {} 
  		    		
 		
@@ -159,12 +167,16 @@ public class Platform {
 	        	
 	        case "pick" :
 	        	/** pick Item block **/
-
+	        	pickItem(idperso);
 	        	break;
 	        	
 	        case "use" :
 	        	/** use item block **/
-	        	
+	        	useItemOnplayer(idperso, argument);
+	        	break;
+	        
+	        case "show" :
+	        	/** show player items list **/
 	        	break;
 	        	
 	        case "attack" :
@@ -177,6 +189,38 @@ public class Platform {
 		}
 
 		
+	}
+	
+	public void pickItem(int idperso){
+		int[] coo = new int[2];
+		coo[0] = persosOnPlat.get(idperso).getPersoPosY();
+		coo[1] = persosOnPlat.get(idperso).getPersoPosX();
+		Item temp = itemIsHere(coo);
+		if(temp !=null){
+			
+			Personnage perso = persosOnPlat.get(idperso);
+			if (persosOnPlat.get(idperso).persoType == "wizard"){ 
+				Wizard persoWiz = (Wizard)perso;
+				persoWiz.pickItem(temp);
+			}
+			else if(persosOnPlat.get(idperso).persoType =="warrior"){ 
+				Warrior persoWar = (Warrior)perso;
+				persoWar.pickItem(temp);
+			}		
+		}
+	}
+	
+	public void useItemOnplayer(int idperso, String item ){
+		Personnage perso = persosOnPlat.get(idperso);
+		
+		if (persosOnPlat.get(idperso).persoType == "wizard"){ 
+			Wizard persoWiz = (Wizard)perso;
+			persoWiz.use(persoWiz.getItemFromName(item));
+		}
+		else if(persosOnPlat.get(idperso).persoType =="warrior"){ 
+			Warrior persoWar = (Warrior)perso;
+			persoWar.use(persoWar.getItemFromName(item));
+		}	
 	}
 	
 	public void attackPos(int idperso, String dir){

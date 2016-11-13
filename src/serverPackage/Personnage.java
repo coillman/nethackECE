@@ -88,7 +88,7 @@ public abstract class Personnage {
 	}
 
 	public void attack(Personnage target) {
-		System.out.println("vous avez attacké !");
+		System.out.println("vous avez attaqué !");
 		int damage = 0;
 		float factor = ((float) this.getLuck() / 12);
 		damage = ((int) (this.getStrength() * (Math.random() + factor)) - target.getResistance());
