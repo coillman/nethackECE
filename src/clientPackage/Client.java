@@ -51,24 +51,15 @@ public class Client {
 		}
 		return bacIn;
 	}
+	
+	public void close(){
+		try{
+			comm.close();
+		}catch(IOException e){
+			e.printStackTrace();
+		}
+		
+	}
 }
 
 
-// code pour la reception de données
-/*
-try {
-	comm = new Socket(host, port);
-
-	InputStream stream = comm.getInputStream();
-	ObjectInputStream ois = new ObjectInputStream(stream);
-	Bac monbac = (Bac) ois.readObject();
-	ois.close();
-
-	for (int i = 0; i < 24; i++) {
-		System.out.println(monbac.affichetab[i]);
-	}
-
-	System.out.println("recieved");
-} catch (ClassNotFoundException | IOException r) {
-	r.printStackTrace();
-}*/
