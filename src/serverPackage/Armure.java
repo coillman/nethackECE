@@ -6,6 +6,7 @@ public class Armure extends Item{
 	public Armure(){
 		this.armureResistance = 15;
 		super.setItemType("armure");
+		affichage ='s';
 	}
 	
 	public int getArmureResistance(){
