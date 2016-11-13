@@ -46,6 +46,10 @@ public class Case {
 		listePerso.add(perso);
 	}
 	
+	public void removePerso(Personnage perso){
+		listePerso.remove(perso);
+	}
+	
 	public void removePersos(){
 		for(int i = 0; i<listePerso.size(); i++){
 			listePerso.remove(i);

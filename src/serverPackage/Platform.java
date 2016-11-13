@@ -22,8 +22,8 @@ public class Platform {
 			}
 		}
 		monBac = new Bac();
-		persosOnPlat =new ArrayList<Personnage>();
-		monstersOnPlat =new ArrayList<Personnage>();
+		persosOnPlat = new ArrayList<Personnage>();
+		monstersOnPlat = new ArrayList<Personnage>();
 	}
 
 	// GETTERS---------------------------------------------------------------------
@@ -71,30 +71,49 @@ public class Platform {
 		}
 
 	}
-	
-	public Personnage persoIsHere(int[] attCo){
+
+	public boolean persoIsAlive(int id) {
+		boolean alive = true;
+		Personnage perso = persosOnPlat.get(id);
+		if (perso.getLife() <= 0) {
+			alive = false;
+		}
+		System.out.println("le perso " + id + " est en vie ? " + alive);
+		return alive;
+	}
+
+	public boolean monsterIsAlive(int id) {
+		boolean alive = true;
+		Personnage perso = monstersOnPlat.get(id);
+		if (perso.getLife() <= 0) {
+			alive = false;
+		}
+		return alive;
+	}
+
+	public Personnage persoIsHere(int[] attCo) {
 		Personnage isHere = null;
 		for (Personnage perso : this.persosOnPlat) {
-			if(perso.getPersoPosY() == attCo[0] && perso.getPersoPosX() == attCo[1]){
+			if (perso.getPersoPosY() == attCo[0] && perso.getPersoPosX() == attCo[1]) {
 				isHere = perso;
 			}
 		}
 		for (Personnage perso : this.monstersOnPlat) {
-			if(perso.getPersoPosY() == attCo[0] && perso.getPersoPosX() == attCo[1]){
+			if (perso.getPersoPosY() == attCo[0] && perso.getPersoPosX() == attCo[1]) {
 				isHere = perso;
 			}
 		}
 		return isHere;
 	}
-	
-	public Item itemIsHere(int[] itmCo){
+
+	public Item itemIsHere(int[] itmCo) {
 		Item itemThere = null;
 		itemThere = tab[itmCo[0]][itmCo[1]].getItem();
-		tab[itmCo[0]][itmCo[1]].removeItem(); //remove item from map
-		return itemThere; 
+		tab[itmCo[0]][itmCo[1]].removeItem(); // remove item from map
+		return itemThere;
 	}
-	
-	public void placeItems(){
+
+	public void placeItems() {
 		Potion elixir = new Potion();
 		Armure shield = new Armure();
 		Food apple = new Food();
@@ -109,10 +128,10 @@ public class Platform {
 		this.tab[7][39].addItem(sword);
 		this.tab[8][8].addItem(apple);
 	}
-	
-	public void placeMonsters(){
-		Orc bossMonster=new Orc(7,9);
-		Gobelin smallFry = new Gobelin(5,3);
+
+	public void placeMonsters() {
+		Orc bossMonster = new Orc(7, 9);
+		Gobelin smallFry = new Gobelin(5, 3);
 		this.tab[bossMonster.getPersoPosY()][bossMonster.getPersoPosX()].addPerso(bossMonster);
 		this.tab[smallFry.getPersoPosY()][smallFry.getPersoPosX()].addPerso(smallFry);
 		monstersOnPlat.add(smallFry);
@@ -125,29 +144,39 @@ public class Platform {
 		 * map
 		 */
 		for (Personnage perso : this.persosOnPlat) {
-			if(!tab[perso.getPersoPosY()][perso.getPersoPosX()].getListePerso().contains(perso)){
+			if (!tab[perso.getPersoPosY()][perso.getPersoPosX()].getListePerso().contains(perso)
+					&& persoIsAlive(persosOnPlat.indexOf(perso))) {
 				this.tab[perso.getPersoPosY()][perso.getPersoPosX()].addPerso(perso);
+			}
+			if (tab[perso.getPersoPosY()][perso.getPersoPosX()].getListePerso().contains(perso)
+					&& !persoIsAlive(persosOnPlat.indexOf(perso))) {
+				this.tab[perso.getPersoPosY()][perso.getPersoPosX()].removePerso(perso);
 			}
 		}
 		for (Personnage perso : this.monstersOnPlat) {
-			if(!tab[perso.getPersoPosY()][perso.getPersoPosX()].getListePerso().contains(perso)){
+			if (!tab[perso.getPersoPosY()][perso.getPersoPosX()].getListePerso().contains(perso)
+					&& monsterIsAlive(monstersOnPlat.indexOf(perso))) {
 				this.tab[perso.getPersoPosY()][perso.getPersoPosX()].addPerso(perso);
+			}
+			if (tab[perso.getPersoPosY()][perso.getPersoPosX()].getListePerso().contains(perso)
+					&& !monsterIsAlive(monstersOnPlat.indexOf(perso))) {
+				this.tab[perso.getPersoPosY()][perso.getPersoPosX()].removePerso(perso);
 			}
 		}
 	}
-	
-	public int[] getSortieCo(){
+
+	public int[] getSortieCo() {
 		int[] coo = new int[2];
 		for (int i = 0; i < lig; i++) {
 			for (int j = 0; j < col; j++) {
-				if(tab[i][j].initial == '>'){
-					//System.out.println("trouvé");
-					coo[0]=i;
-					coo[1]=j;
+				if (tab[i][j].initial == '>') {
+					// System.out.println("trouvé");
+					coo[0] = i;
+					coo[1] = j;
 				}
 			}
 		}
-		//System.out.println(coo[0] + coo[1]);
+		// System.out.println(coo[0] + coo[1]);
 		return coo;
 	}
 
@@ -155,9 +184,9 @@ public class Platform {
 		/*
 		 * ajoute le perso (Warrior) à la liste persosOnPlat
 		 */
-		for(int i=0; i<nb; i++){
+		for (int i = 0; i < nb; i++) {
 			persosOnPlat.add(new Warrior(getSortieCo()[1], getSortieCo()[0]));
-			//persosOnPlat.add(new Warrior(2,5));
+			// persosOnPlat.add(new Warrior(2,5));
 		}
 	}
 
@@ -166,75 +195,73 @@ public class Platform {
 		 * en fonction de action, appel la bonne méthode
 		 */
 		String[] parts = action.split(":");
-		String category = parts[0]; //move , use , pick
-		String argument = parts[1]; //up  , potion 
-		
-		/*Personnage perso = persosOnPlat.get(idperso);
-		
-		if (perso.persoType == "wizard"){
-			Wizard persoWiz = (Wizard)perso;
-		}
-		else if(perso.persoType =="warrior"){
-			Warrior persoWar = (Warrior)perso;
-		}*/
-		//for(Personnage perso : persosOnPlat) {} 
- 		    		
-		
-		switch(category) {
-	        case "move" :
-	        	/** move Perso block **/
-	        	move(idperso, argument);
-		        break;
-	        	
-	        case "pick" :
-	        	/** pick Item block **/
-	        	pickItem(idperso);
-	        	break;
-	        	
-	        case "use" :
-	        	/** use item block **/
-	        	useItemOnplayer(idperso, argument);
-	        	break;
-	        
-	        case "show" :
-	        	/** show player items list **/
-	        	break;
-	        	
-	        case "attack" :
-	        	/** attack opponent block **/
-	        	attackPos(idperso, argument);
-	        	break;
-	        	
-	        case "quit" :    	break;	        
-	        default 	:     	System.out.println("Invalid command");
+		String category = parts[0]; // move , use , pick
+		String argument = parts[1]; // up , potion
+
+		/*
+		 * Personnage perso = persosOnPlat.get(idperso);
+		 * 
+		 * if (perso.persoType == "wizard"){ Wizard persoWiz = (Wizard)perso; }
+		 * else if(perso.persoType =="warrior"){ Warrior persoWar =
+		 * (Warrior)perso; }
+		 */
+		// for(Personnage perso : persosOnPlat) {}
+
+		switch (category) {
+		case "move":
+			/** move Perso block **/
+			move(idperso, argument);
+			break;
+
+		case "pick":
+			/** pick Item block **/
+			pickItem(idperso);
+			break;
+
+		case "use":
+			/** use item block **/
+			useItemOnplayer(idperso, argument);
+			break;
+
+		case "show":
+			/** show player items list **/
+			break;
+
+		case "attack":
+			/** attack opponent block **/
+			attackPos(idperso, argument);
+			break;
+
+		case "quit":
+			break;
+		default:
+			System.out.println("Invalid command");
 		}
 
-		
 	}
-	
-	public void pickItem(int idperso){
+
+	public void pickItem(int idperso) {
 		int[] coo = new int[2];
 		coo[0] = persosOnPlat.get(idperso).getPersoPosY();
 		coo[1] = persosOnPlat.get(idperso).getPersoPosX();
 		Item temp = itemIsHere(coo);
-		if(temp !=null){
-			
+		if (temp != null) {
+
 			Personnage perso = persosOnPlat.get(idperso);
-			if (perso.persoType == "wizard"){ 
-				Wizard persoWiz = (Wizard)perso;
+			if (perso.persoType == "wizard") {
+				Wizard persoWiz = (Wizard) perso;
 				persoWiz.pickItem(temp);
-			}
-			else if(perso.persoType =="warrior"){ 
-				Warrior persoWar = (Warrior)perso;
+			} else if (perso.persoType == "warrior") {
+				Warrior persoWar = (Warrior) perso;
 				persoWar.pickItem(temp);
-			}	
+			}
 			tab[coo[0]][coo[1]].setItem(null);
 		}
 	}
-	
-	public void useItemOnplayer(int idperso, String item ){
+
+	public void useItemOnplayer(int idperso, String item) {
 		Personnage perso = persosOnPlat.get(idperso);
-		
+	
 		if (persosOnPlat.get(idperso).persoType == "wizard"){ 
 			Wizard persoWiz = (Wizard)perso;
 			persoWiz.useItem(item);
@@ -248,40 +275,39 @@ public class Platform {
 			persoWar.setMessage("You use "+ item);
 		}	
 	}
-	
-	public void attackPos(int idperso, String dir){
+
+	public void attackPos(int idperso, String dir) {
 		int[] coo = new int[2];
 		coo = dirToCo(dir);
 		int[] attCo = new int[2];
 		attCo[0] = persosOnPlat.get(idperso).getPersoPosY() + coo[0];
 		attCo[1] = persosOnPlat.get(idperso).getPersoPosX() + coo[1];
-		if(persoIsHere(attCo) != null){
+		if (persoIsHere(attCo) != null) {
 			persosOnPlat.get(idperso).attack(persoIsHere(attCo));
 		}
 	}
-	
-	
-	public void move(int idperso, String dir){
+
+	public void move(int idperso, String dir) {
 		int[] coo = new int[2];
 		coo = dirToCo(dir);
 		int[] nextCo = new int[2];
 		Personnage perso = persosOnPlat.get(idperso);
 		nextCo[0] = perso.getPersoPosY() + coo[0];
 		nextCo[1] = perso.getPersoPosX() + coo[1];
-		if (isMovePossible(nextCo[0],nextCo[1])){
+		if (isMovePossible(nextCo[0], nextCo[1])) {
 			tab[perso.getPersoPosY()][perso.getPersoPosX()].removePersos();
 			perso.setPersoPosY(nextCo[0]);
 			perso.setPersoPosX(nextCo[1]);
 			perso.setMessage("");
-		}else{
+		} else {
 			perso.setMessage("no no no, you can't go there !");
 		}
 		tab[persosOnPlat.get(idperso).getPersoPosY()][persosOnPlat.get(idperso).getPersoPosX()].removePersos();
 	}
 
-	public int[] dirToCo(String dir){
+	public int[] dirToCo(String dir) {
 		int[] coo = new int[2];
-		switch (dir){
+		switch (dir) {
 		case "up":
 			coo[0] = -1;
 			coo[1] = 0;
@@ -301,35 +327,36 @@ public class Platform {
 		}
 		return coo;
 	}
-	
+
 	public boolean isMovePossible(int li, int co) {
 		/*
 		 * condition sur les cases qui ne permettent pas le déplacement
 		 */
 		boolean ispossible = true;
-		if(tab[li][co].affichage == '-' || tab[li][co].initial == '|' || tab[li][co].initial == ' '){
-			
+		if (tab[li][co].affichage == '-' || tab[li][co].initial == '|' || tab[li][co].initial == ' ') {
+
 			ispossible = false;
 		}
-		for (Personnage perso : persosOnPlat){
-			if(perso.getPersoPosY() == li && perso.getPersoPosX() == co && tab[li][co].initial != '>' && tab[li][co].initial != '<'){
+		for (Personnage perso : persosOnPlat) {
+			if (perso.getPersoPosY() == li && perso.getPersoPosX() == co && tab[li][co].initial != '>'
+					&& tab[li][co].initial != '<') {
 				ispossible = false;
 			}
 		}
-		for (Personnage perso : monstersOnPlat){
-			if(perso.getPersoPosY() == li && perso.getPersoPosX() == co){
+		for (Personnage perso : monstersOnPlat) {
+			if (perso.getPersoPosY() == li && perso.getPersoPosX() == co) {
 				ispossible = false;
 			}
 		}
-		
+
 		return ispossible;
-		
+
 	}
-	
-	
-	public Bac createPersoBac(int idperso){
+
+	public Bac createPersoBac(int idperso) {
 		/*
-		 * créé un bac personalisé pour le joueur en paramètre, se bas sur le bac de la plateforme
+		 * créé un bac personalisé pour le joueur en paramètre, se bas sur le
+		 * bac de la plateforme
 		 */
 		Personnage perso = persosOnPlat.get(idperso);
 		Bac persoBac = this.monBac;
@@ -338,6 +365,7 @@ public class Platform {
 		persoBac.luck = perso.getLuck();
 		persoBac.resistance = perso.getResistance();
 		persoBac.message = perso.getMessage();
+
 		if (perso.persoType == "wizard"){
 			Wizard persoWiz = (Wizard)perso;
 			persoBac.items = persoWiz.getAllItem();
@@ -348,6 +376,5 @@ public class Platform {
 		}
 		return persoBac;
 	}
-	
 
 }

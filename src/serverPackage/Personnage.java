@@ -99,13 +99,13 @@ public abstract class Personnage {
 	
 
 	public void attack(Personnage target) {
-		message = "vous avez attaqué !";
-		System.out.println(message);
 		int damage = 0;
 		float factor = ((float) this.getLuck() / 12);
 		damage = ((int) (this.getStrength() * (Math.random() + factor)) - target.getResistance());
 		System.out.println("damage: " + damage);
 		if (damage >= 0) {
+			message = "vous avez attaqué de "+damage+" !";
+			System.out.println(message);
 			int targetNewLife = target.getLife() - damage;
 			if (targetNewLife <= 0) {
 				target.die();
@@ -121,9 +121,9 @@ public abstract class Personnage {
 
 	public void die() {
 		this.setLife(0);
-		message = "you're dead!";
+		message = "you are dead!";
 		System.out.println(message);
-
+		
 	}
 
 	public void dropItem() {
