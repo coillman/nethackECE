@@ -98,7 +98,7 @@ public abstract class Personnage {
 	
 	public void decreaseLife(){
 		//decrease life of player per turn
-		if(this.life>1){
+		if(this.life>=1){
 			this.life = this.life -1;
 		}
 	}
