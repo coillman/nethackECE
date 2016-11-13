@@ -117,5 +117,26 @@ public class Warrior extends Personnage{
 	
 	//moves
 	public void move(String key){}
+
+	public void useItem(String item) {	
+		switch (item){
+			case "potion" 	:
+				Potion potion = new Potion();
+				this.use(potion);	
+				break;
+			case "food" 	:
+				Food food = new Food();
+				this.use(food);
+				break;
+			case "weapon" 	:
+				Weapon weapon = new Weapon();
+				this.use(weapon);	
+				break;
+			case "armure" 	:
+				Armure armure = new Armure();
+				this.use(armure);
+				break;
+		}
+	}
 	
 }

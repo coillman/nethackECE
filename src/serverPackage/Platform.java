@@ -100,7 +100,14 @@ public class Platform {
 		Food apple = new Food();
 		Weapon wand = new Weapon();
 		Weapon sword = new Weapon();
+		
 		this.tab[2][5].addItem(elixir);
+		this.tab[2][6].addItem(apple);
+		this.tab[2][7].addItem(wand);
+		
+		this.tab[8][34].addItem(shield);
+		this.tab[7][39].addItem(sword);
+		this.tab[8][8].addItem(apple);
 	}
 	
 	public void placeMonsters(){
@@ -230,11 +237,15 @@ public class Platform {
 		
 		if (persosOnPlat.get(idperso).persoType == "wizard"){ 
 			Wizard persoWiz = (Wizard)perso;
-			persoWiz.use(persoWiz.getItemFromName(item));
+			persoWiz.useItem(item);
+			//persoWiz.use(persoWiz.getItemFromName(item));
+			persoWiz.setMessage("You use "+ item);
 		}
 		else if(persosOnPlat.get(idperso).persoType =="warrior"){ 
 			Warrior persoWar = (Warrior)perso;
-			persoWar.use(persoWar.getItemFromName(item));
+			persoWar.useItem(item);;
+			//persoWar.use(persoWar.getItemFromName(item));
+			persoWar.setMessage("You use "+ item);
 		}	
 	}
 	
@@ -329,11 +340,11 @@ public class Platform {
 		persoBac.message = perso.getMessage();
 		if (perso.persoType == "wizard"){
 			Wizard persoWiz = (Wizard)perso;
-			persoBac.items = persoWiz.getAllItem().toString();
+			persoBac.items = persoWiz.getAllItem();
 		}
 		if (perso.persoType == "warrior"){
 			Warrior persoWar = (Warrior)perso;
-			persoBac.items = persoWar.getAllItem().toString();
+			persoBac.items = persoWar.getAllItem();
 		}
 		return persoBac;
 	}

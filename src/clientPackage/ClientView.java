@@ -13,6 +13,7 @@ import serverPackage.Item;
 public class ClientView  {
 	private String clientIpnut;
 	Client instanceClient;
+	Bac ClientBac;
 	
 	public ClientView(int port){
 		instanceClient = new Client("localhost", port);
@@ -45,6 +46,9 @@ public class ClientView  {
   					// check if item is in inventory
   					clientIpnut ="use:"+itemName;
  					runningState =true;
+  				}else{
+  					runningState =false;
+ 					System.out.println("No such item in your inventory! Try again");
   				}
 			
 			}else if(clientIpnut.contains("pick")){
@@ -129,13 +133,14 @@ public class ClientView  {
 	public boolean checkInInventory(String itemName){
 		//invetory is retrieved from BAC
 		boolean itemState = false;
-		ArrayList<String>inventory = new ArrayList<String>();
+		//ArrayList<String>inventory = new ArrayList<String>();
+		ArrayList<String> inventory = ClientBac.items;
 		for (Iterator<String> it = inventory.iterator(); it.hasNext(); ) {
 		    String item = it.next();
 		    if (item.equals(itemName)) {
 		    	itemState = true;
-		    }else{
-		    	itemState = false;
+		    /*}else{
+		    	itemState = false;*/
 		    } 
 		}
 		return itemState;	
@@ -150,7 +155,8 @@ public class ClientView  {
 		System.out.print(" | strength:" + bac.strength);
 		System.out.print(" | luck:" + bac.luck);
 		System.out.println(" | resistance:" + bac.resistance);
-		System.out.println("items : " + bac.items);
+		System.out.println("items : " + bac.items.toString());
 		System.out.println(bac.message);
+		this.ClientBac = bac;
 	}
 }

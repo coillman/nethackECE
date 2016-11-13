@@ -3,6 +3,7 @@ package commonPackage;
 
 import java.awt.event.KeyEvent;
 import java.io.Serializable;
+import java.util.ArrayList;
 
 
 public class Bac implements Serializable {
@@ -15,7 +16,7 @@ public class Bac implements Serializable {
 	public char[][] affichetab = new char[lig][col]; // vue cote client, seul
 	public String message;
 	public String action;
-	public String items;
+	public ArrayList<String> items;
 	public int life;
 	public int strength;
 	public int luck;

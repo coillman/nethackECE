@@ -167,11 +167,11 @@ public class Main {
 			mamap.loadPlateform("Plateforme/level" + level + ".txt");
 			mamap.addPersos(nbJoueur);
 			
+			mamap.placeItems();
+			mamap.placeMonsters();
+			
 			while(!levelup){
-				
-				mamap.placeItems();
-				mamap.placeMonsters();
-				
+						
 				mamap.placePersos();
 				mamap.createView();
 				monserv.spread(mamap, whoseTurn);
