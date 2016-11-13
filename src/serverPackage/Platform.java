@@ -108,6 +108,8 @@ public class Platform {
 		Gobelin smallFry = new Gobelin(5,3);
 		this.tab[bossMonster.getPersoPosY()][bossMonster.getPersoPosX()].addPerso(bossMonster);
 		this.tab[smallFry.getPersoPosY()][smallFry.getPersoPosX()].addPerso(smallFry);
+		monstersOnPlat.add(smallFry);
+		monstersOnPlat.add(bossMonster);
 	}
 
 	public void placePersos() {
