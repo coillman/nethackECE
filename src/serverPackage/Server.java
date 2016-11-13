@@ -43,7 +43,7 @@ public class Server {
 		for (Socket soc : listSoc) {
 			int id = listSoc.indexOf(soc);
 			Bac monbac = mamap.createPersoBac(id);
-			if(id == idJoueur){
+			if(id == idJoueur && mamap.persoIsAlive(idJoueur)){
 				monbac.monTour=true;
 				sendBac(monbac, soc);
 			}else{
@@ -63,15 +63,17 @@ public class Server {
 		}
 	}
 	
-	public String listen(int idJoueur){
+	public String listen(Platform mamap, int idJoueur){
 		Bac bacIn = new Bac();
-		try{
-			ObjectInputStream ois = new ObjectInputStream(listSoc.get(idJoueur).getInputStream());
-			bacIn = (Bac) ois.readObject();
-			//ois.close();
-			
-		}catch(IOException | ClassNotFoundException e){
-			e.printStackTrace();
+		if (mamap.persoIsAlive(idJoueur)) {
+			try {
+				ObjectInputStream ois = new ObjectInputStream(listSoc.get(idJoueur).getInputStream());
+				bacIn = (Bac) ois.readObject();
+				// ois.close();
+
+			} catch (IOException | ClassNotFoundException e) {
+				e.printStackTrace();
+			}
 		}
 		return bacIn.action;
 	}

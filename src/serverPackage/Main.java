@@ -176,9 +176,11 @@ public class Main {
 				mamap.createView();
 				monserv.spread(mamap, whoseTurn);
 				System.out.println("turn :" + whoseTurn);
-				action = monserv.listen(whoseTurn);
-				System.out.println("commande recue :" + action);
-				mamap.apply(action, whoseTurn);
+				action = monserv.listen(mamap, whoseTurn);
+				if(action != null){
+					System.out.println("commande recue :" + action);
+					mamap.apply(action, whoseTurn);
+				}
 				
 				whoseTurn ++;
 				whoseTurn = whoseTurn % nbJoueur;

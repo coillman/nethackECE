@@ -9,7 +9,7 @@ public class Warrior extends Personnage{
 	
 	public Warrior(int x, int y) {
 		super(x, y);
-		this.setLife(50);
+		this.setLife(10);
 		this.setResistance(70);
 		this.setStrength(80);
 		this.setLuck(5);
