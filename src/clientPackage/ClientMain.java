@@ -13,13 +13,13 @@ public class ClientMain {
 		Bac bacIn = new Bac();
 		boolean quit = false;
 
-/*		
+	
   		// demande de l'adresse du host à l'utilisateur
 		System.out.println("adresse du host :");
 		Scanner sc2 = new Scanner(System.in);
 		String host = sc2.nextLine();
 		//sc2.close();
-*/
+
 		
 		// demande du numéro de port à l'utilisatreur
 		System.out.println("numero de port :");
@@ -27,17 +27,21 @@ public class ClientMain {
 		int port = sc1.nextInt();
 		//sc1.close();
 		
-		ClientView monclient = new ClientView(port);
+		ClientView monclient = new ClientView(host, port);
 		
 		while(!quit){
 			bacIn = monclient.instanceClient.listen();
 			monclient.affiche(bacIn);
+			if(bacIn.message == "you are dead!"){
+				quit = true;
+			}
 			if(bacIn.monTour){
 				bacOut.action = monclient.getClientInput();
 				monclient.instanceClient.sendRequest(bacOut);
 			}
 		}
 		
+		monclient.finish();
 	}
 
 }

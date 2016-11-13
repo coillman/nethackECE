@@ -186,10 +186,15 @@ public class Main {
 				nextLevel = mamap.nextLevel(level);
 				whoseTurn ++;
 				whoseTurn = whoseTurn % nbJoueur;
+				
+				if(mamap.allDead()){
+					level = -1;
+				}
 			}
 			level = nextLevel;
 		}
 		
+		monserv.closeAll();
 
 	}
 

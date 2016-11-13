@@ -15,8 +15,8 @@ public class ClientView  {
 	Client instanceClient;
 	Bac ClientBac;
 	
-	public ClientView(int port){
-		instanceClient = new Client("localhost", port);
+	public ClientView(String host, int port){
+		instanceClient = new Client(host, port);
 		clientIpnut = "";
 	}
 	
@@ -158,5 +158,9 @@ public class ClientView  {
 		System.out.println("items : " + bac.items.toString());
 		System.out.println(bac.message);
 		this.ClientBac = bac;
+	}
+	
+	public void finish(){
+		instanceClient.close();
 	}
 }

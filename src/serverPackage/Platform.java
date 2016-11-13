@@ -71,6 +71,16 @@ public class Platform {
 		}
 
 	}
+	
+	public boolean allDead(){
+		boolean alldead = true;
+		for (Personnage perso : this.persosOnPlat) {
+			if(persoIsAlive(persosOnPlat.indexOf(perso))){
+				alldead = false;
+			}
+		}
+		return alldead;
+	}
 
 	public boolean persoIsAlive(int id) {
 		boolean alive = true;

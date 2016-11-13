@@ -41,14 +41,16 @@ public class Server {
 		 * envoie le Bac de la plateforme en paramètre
 		 */
 		for (Socket soc : listSoc) {
-			int id = listSoc.indexOf(soc);
-			Bac monbac = mamap.createPersoBac(id);
-			if(id == idJoueur && mamap.persoIsAlive(idJoueur)){
-				monbac.monTour=true;
-				sendBac(monbac, soc);
-			}else{
-				monbac.monTour=false;
-				sendBac(monbac, soc);
+			if(mamap.persoIsAlive(listSoc.indexOf(soc))){
+				int id = listSoc.indexOf(soc);
+				Bac monbac = mamap.createPersoBac(id);
+				if(id == idJoueur && mamap.persoIsAlive(idJoueur)){
+					monbac.monTour=true;
+					sendBac(monbac, soc);
+				}else{
+					monbac.monTour=false;
+					sendBac(monbac, soc);
+				}
 			}
 		}
 	}
@@ -78,23 +80,19 @@ public class Server {
 		return bacIn.action;
 	}
 	
-	/*
 	
-	public void launchServer(Platform mamap) {
-		System.out.println("hello");
-
-		try {
-			Socket comm = sersoc.accept();
-/*
-			ObjectOutputStream oos = new ObjectOutputStream(comm.getOutputStream());
-			oos.writeObject(mamap.getBac());
-			oos.close();
-
-			System.out.println("sent");
-
-		} catch (IOException e) {
+	public void closeAll(){
+		for (Socket soc : listSoc) {
+			try{
+				soc.close();
+			}catch(IOException e){
+				e.printStackTrace();
+			}
+		}
+		try{
+			sersoc.close();
+		}catch(IOException e){
 			e.printStackTrace();
 		}
-
-	}*/
+	}
 }
